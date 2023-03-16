@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import Main from "./components/Main";
 
 const styles = {
   hide: { display: "none" },
@@ -49,7 +50,7 @@ function App() {
         <h1>Quiz Time</h1>
       </header>
       <button onClick={getQuizzes}>click</button>
-      <h1>Category: {quizzes[0].category}</h1>
+
       <div>
         {quizzes.map((quiz) => {
           return (
@@ -70,6 +71,7 @@ function App() {
           );
         })}
       </div>
+      <Main />
     </div>
   );
 }
