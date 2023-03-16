@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function Question() {
+export default function Question({
+  question,
+  category,
+  possibleAnswers,
+  correctAnswer,
+}) {
   const styles = {
     questionCard: {
       backgroundColor: "#E1F6FA",
@@ -19,9 +24,21 @@ export default function Question() {
       justifyContent: "center",
     },
     category: { textAlign: "left" },
-    question: {},
+    question: {
+      backgroundColor: "white",
+      fontSize: "0.85rem",
+      padding: "0.2rem",
+      borderRadius: "5px",
+    },
     answers: { display: "flex", justifyContent: "space-around" },
-    answer: {},
+    answer: {
+      backgroundColor: "#28C1C9",
+      padding: "0.4rem",
+      borderRadius: "5px",
+      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.5)",
+      fontSize: "0.7rem",
+      color: "white",
+    },
   };
 
   return (
@@ -29,15 +46,19 @@ export default function Question() {
       <div style={styles.container}>
         <div className="questionCard" style={styles.questionCard}>
           <div className="category" style={styles.category}>
-            Music
+            {category}
           </div>
-          <div className="question">
-            Which musician released the album "Off the Wall"?
+          <div className="question" style={styles.question}>
+            {question}
           </div>
-          <div className="answers" style={styles.answers}>
-            <div>Nicky Minaj</div>
-            <div>Neil Young</div>
-            <div>Eric Clapton</div>
+          <div className={"answers"} style={styles.answers}>
+            {possibleAnswers.map((answer) => {
+              return (
+                <span className="answer" style={styles.answer}>
+                  {answer}
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
