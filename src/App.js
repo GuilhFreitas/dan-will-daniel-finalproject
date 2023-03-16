@@ -130,8 +130,8 @@ function App() {
       <ThemeProvider theme={dropDown}>
         <Box sx={{ minWidth: 120, margin: 2}}>
          <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">Category:</InputLabel>
-          <Select value={category} onChange={handleCategoryChange}>
+          <InputLabel id="demo-simple-select-label" label="Category">Category</InputLabel>
+          <Select labelId="demo-simple-select-label" id="demo-simple-select" value={category} label="Category" onChange={handleCategoryChange}>
           <MenuItem value="Arts & Literature" >Arts & Literature</MenuItem>
             <MenuItem value="Film & TV">Film & TV</MenuItem>
             <MenuItem value="science">Science</MenuItem>
@@ -146,8 +146,8 @@ function App() {
     <ThemeProvider theme={dropDown}>
       <Box sx={{ minWidth: 125 }}>
         <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Num Cards:</InputLabel>
-          <Select value={limit} onChange={handleNumCardsChange}>
+        <InputLabel id="demo-simple-select-label">Cards:</InputLabel>
+          <Select labelId="demo-simple-select-label" id="demo-simple-select" value={limit} label="Cards" onChange={handleNumCardsChange}>
             <MenuItem value="1">1</MenuItem>
             <MenuItem value="5">5</MenuItem>
             <MenuItem value="10">10</MenuItem>
