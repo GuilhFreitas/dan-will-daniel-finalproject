@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
+const styles = {
+  hide: { display: "none" },
+  show: { display: "block" },
+};
+
 function App() {
-  const [quizzes, setQuizzes] = useState([{ question: "fava" }]);
+  const [quizzes, setQuizzes] = useState([
+    {
+      category: "category here",
+      question: "question here",
+      correctAnswer: "answer here",
+      index: 0,
+    },
+  ]);
   let category = "history";
   let limit = 5;
 
@@ -12,9 +24,23 @@ function App() {
     )
       .then((resp) => resp.json())
       .then((quizzes) => {
-        setQuizzes(quizzes);
         console.log(quizzes);
+        setQuizzes(quizzes);
       });
+  };
+
+  const hideQuestionsAndShowAnswers = (event) => {
+    if (event.target.getAttribute("style") === "display: block;") {
+      event.target.setAttribute("style", "display: none;");
+      event.target.nextSibling.setAttribute("style", "display: block;");
+    }
+  };
+
+  const hideAnswersAndShowQuestions = (event) => {
+    if (event.target.getAttribute("style") === "display: block;") {
+      event.target.setAttribute("style", "display: none;");
+      event.target.previousSibling.setAttribute("style", "display: block;");
+    }
   };
 
   return (
@@ -23,9 +49,25 @@ function App() {
         <h1>Quiz Time</h1>
       </header>
       <button onClick={getQuizzes}>click</button>
+      <h1>Category: {quizzes[0].category}</h1>
       <div>
         {quizzes.map((quiz) => {
-          return <p>{quiz.question}</p>;
+          return (
+            <div key={quiz.id}>
+              <p
+                style={styles.show}
+                onClick={(event) => hideQuestionsAndShowAnswers(event)}
+              >
+                Question: {quiz.question}
+              </p>
+              <p
+                style={styles.hide}
+                onClick={(event) => hideAnswersAndShowQuestions(event)}
+              >
+                Answer: {quiz.correctAnswer}
+              </p>
+            </div>
+          );
         })}
       </div>
     </div>
