@@ -3,23 +3,24 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { handleCategoryChange } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import Toolbar from '@mui/material/Toolbar';
 import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+// import { yellow } from '@mui/material/colors';
 import "./App.css";
 
 
-const styles = {
+const styles = { 
   hide: { display: "none" },
   show: { display: "block" }
 };
 
 function App() {
   const [quizzes, setQuizzes] = useState([]);
-
   const [category, setCategory] = useState("");
   const [limit, setNumCards] = useState();
 
@@ -69,8 +70,39 @@ function App() {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+  
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const nav = createTheme({
+    palette: {
+      primary: {
+      main: '#fff59d',   
+      },
+    },
+  });
+
+  const btn = createTheme({
+    palette: {
+      primary: {
+      light: '#757ce8',
+      main: '#3f50b5',
+      dark: '#002884',
+      contrastText: '#fff',
+      },
+    },
+  });
+
+  
+  const dropDown = createTheme({
+    palette: {
+      primary: {
+      main: '#03a9f4',
+      },
+    },
+  });
+  
+  
   
   return (
     <div className="App">
@@ -78,8 +110,9 @@ function App() {
         <h1>Quiz Time</h1>
       </header>
       <Box onClick={handleDrawerToggle} sx={{ flexGrow: 1 }}>
-      <AppBar position="static" component="nav" color="inherit">
-      <Toolbar>
+      <ThemeProvider theme={nav}>
+      <AppBar position='static' >
+      <Toolbar> 
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -89,12 +122,17 @@ function App() {
           >
              <MenuIcon />
           </IconButton>
-          <Button onClick={getQuizzes} color="primary" >Generate Quiz</Button>
-          <Box sx={{ minWidth: 120, margin: 2}}>
+
+      <ThemeProvider theme={btn}>
+        <Button onClick={getQuizzes}variant="contained" >Generate Quiz</Button>
+      </ThemeProvider>
+
+      <ThemeProvider theme={dropDown}>
+        <Box sx={{ minWidth: 120, margin: 2}}>
          <FormControl fullWidth>
           <InputLabel id="demo-simple-select-label">Category:</InputLabel>
           <Select value={category} onChange={handleCategoryChange}>
-          <MenuItem value="Arts & Literature">Arts & Literature</MenuItem>
+          <MenuItem value="Arts & Literature" >Arts & Literature</MenuItem>
             <MenuItem value="Film & TV">Film & TV</MenuItem>
             <MenuItem value="science">Science</MenuItem>
             <MenuItem value="history">History</MenuItem>
@@ -102,10 +140,11 @@ function App() {
             <MenuItem value="Geography">Geography</MenuItem>
           </Select>
          </FormControl>
-         </Box>
+        </Box>
+        </ThemeProvider>
         
-     
-      <Box sx={{ minWidth: 120 }}>
+    <ThemeProvider theme={dropDown}>
+      <Box sx={{ minWidth: 125 }}>
         <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Num Cards:</InputLabel>
           <Select value={limit} onChange={handleNumCardsChange}>
@@ -116,9 +155,12 @@ function App() {
           </Select>
           </FormControl>
           </Box>
+          </ThemeProvider> 
           </Toolbar>
-           </AppBar>
-      </Box>
+          </AppBar>
+          </ThemeProvider>      
+        </Box>
+      
      
  
       {quizzes.map((quiz) => (
