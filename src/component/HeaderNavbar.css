@@ -9,7 +9,6 @@
     padding-top: 20px;
   }
   
-
   .neonText {
     color: #fff;
     text-shadow:
@@ -22,7 +21,6 @@
       0 0 102px rgb(93, 188, 240),
       0 0 151px rgb(93, 188, 240)
   }
-  
   
   /* Additional styling */
   
@@ -47,8 +45,6 @@
                 inset 0 0 1.3rem #1336fe; 
     }
   
-
-  
   h2 {
     position: relative;
     font-family: "Bungee Shade";
@@ -57,7 +53,6 @@
     margin: -50px !important;
   }
 
-    
   h1 {
     position: absolute;
     font-family: "Pacifico";
@@ -68,11 +63,10 @@
     rotate: -10deg;
   }
   
-  
-  /* .pulsate {
+  .pulsate {
      animation: pulsate 1s infinite alternate;     
   }
-   */
+  
   
   @keyframes pulsate {
       
@@ -87,7 +81,6 @@
         0 0 92px #f09,
         0 0 102px #f09,
         0 0 151px #f09
-    
     }
     
     0% {
@@ -101,7 +94,6 @@
       0 0 92px #f09,
       0 0 102px #f09,
       0 0 151px #f09
-  
   }
   }
   

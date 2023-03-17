@@ -1,0 +1,19 @@
+body{
+   background-color: rgb(220, 215, 215);
+}
+.container{
+  height: 1000px;
+  margin: auto 50px;
+  -webkit-box-shadow: -1px 3px 12px -1px #000000; 
+  box-shadow: -1px 3px 12px -1px #000000;
+  background-color: #fff;
+}
+
+@media (width:960px){
+
+    .container{
+        width: 500px;
+        margin: auto 20px ;
+      }
+
+}

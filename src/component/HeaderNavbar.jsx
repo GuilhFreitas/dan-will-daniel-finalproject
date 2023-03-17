@@ -1,3 +1,4 @@
+//import statements for required components
 import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -12,28 +13,29 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import "./HeaderNavbar.css";
 
-const styles = {  
-  hide: { display: "none" },
-  show: { display: "block" }
-};
-
+//function to create HeaderNavbar
 function HeaderNavbar(props) {
+  //Defining constants for storing state variables- category and limit
   const [category, setCategory] = useState("");
   const [limit, setNumCards] = useState();
 
+  //Function to handle changes in category dropdown
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
   };
 
+  //Function to handle changes for number of cards dropdown
   const handleNumCardsChange = (event) => {
     setNumCards(Number.parseInt(event.target.value));
     props.onNumCardsChange(Number.parseInt(event.target.value));
   };
 
+  //Function to handle DrawerToggle event
   const handleDrawerToggle = () => {
     props.onDrawerToggle();
   };
   
+  //Creating themes using 'createTheme' function
   const nav = createTheme({
     palette: {
       primary: {
@@ -61,6 +63,7 @@ function HeaderNavbar(props) {
     },
   });
   
+  //Render boxes with header and toolbar along with dropdowns 
   return (
     <div className="HeaderNav">
 
@@ -85,20 +88,22 @@ function HeaderNavbar(props) {
               <MenuIcon />
             </IconButton>
 
+            {/* Creating button with variant using High Order Components */}
             <ThemeProvider theme={btn}>
               <Button onClick={() => props.onQuizRequest(category, limit)} variant="contained">Quiz</Button>
             </ThemeProvider>
 
+            {/* Creating dropdowns with options using High Order Components */}
             <ThemeProvider theme={dropDown}>
               <Box sx={{ minWidth: 120, margin: 2}}>
                 <FormControl fullWidth>
                   <InputLabel id="demo-simple-select-label" label="Category">Category</InputLabel>
                   <Select labelId="demo-simple-select-label" id="demo-simple-select" value={category} label="Category" onChange={handleCategoryChange}>
-                    <MenuItem value="Arts & Literature">Arts & Literature</MenuItem>
-                    <MenuItem value="Film & TV">Film & TV</MenuItem>
+                    <MenuItem value="Arts & Literature">Arts &amp; Literature</MenuItem>
+                    <MenuItem value="Film & TV">Film &amp; TV</MenuItem>
                     <MenuItem value="science">Science</MenuItem>
                     <MenuItem value="history">History</MenuItem>
-                    <MenuItem value="Society & Culture">Society & Culture</MenuItem>
+                    <MenuItem value="Society & Culture">Society &amp; Culture</MenuItem>
                     <MenuItem value="Geography">Geography</MenuItem>
                   </Select>
                 </FormControl>
@@ -127,3 +132,4 @@ function HeaderNavbar(props) {
 }
 
 export default HeaderNavbar;
+
