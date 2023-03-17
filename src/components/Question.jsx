@@ -1,23 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Question({
   question,
   category,
   possibleAnswers,
   correctAnswer,
+  hideQuestions,
+  style,
 }) {
+  const [hideQuestionCard, setHideQuestionCardState] = useState(false);
+
   const styles = {
     questionCard: {
       backgroundColor: "#E1F6FA",
       height: "9rem",
       width: "20rem",
-      display: "flex",
+      display: hideQuestionCard ? "none" : "flex",
       flexDirection: "column",
       color: "purple",
       justifyContent: "space-around",
       borderRadius: "7px",
       boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.5)",
       padding: "1rem",
+      ...style,
     },
     container: {
       display: "flex",
@@ -31,7 +36,7 @@ export default function Question({
       borderRadius: "5px",
     },
     answers: { display: "flex", justifyContent: "space-around" },
-    answer: {
+    possibleAnswer: {
       backgroundColor: "#28C1C9",
       padding: "0.4rem",
       borderRadius: "5px",
@@ -39,6 +44,11 @@ export default function Question({
       fontSize: "0.7rem",
       color: "white",
     },
+  };
+
+  const handleHideQuestions = (event) => {
+    setHideQuestionCardState(true); // set state variable to true
+    hideQuestions(event); // call parent function
   };
 
   return (
@@ -52,9 +62,14 @@ export default function Question({
             {question}
           </div>
           <div className={"answers"} style={styles.answers}>
-            {possibleAnswers.map((answer) => {
+            {possibleAnswers.map((answer, index) => {
               return (
-                <span className="answer" style={styles.answer}>
+                <span
+                  key={index}
+                  className="possibleAnswer"
+                  style={styles.possibleAnswer}
+                  onClick={(event) => hideQuestions(event)}
+                >
                   {answer}
                 </span>
               );

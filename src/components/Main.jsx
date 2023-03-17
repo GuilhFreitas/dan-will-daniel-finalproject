@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import Question from "./Question";
 
-const styles = {
-  hide: { display: "none" },
-  show: { display: "block" },
-};
-
 export default function Main() {
   const [quizzes, setQuizzes] = useState([
     {
@@ -14,8 +9,11 @@ export default function Main() {
       correctAnswer: "Micheal Jackson",
       incorrectAnswers: ["Neil Young", "Eric the Clap"],
       possibleAnswers: ["Neil Young", "Eric the Clap", "Micheal Jackson"],
+      id: 0,
     },
   ]);
+
+  const [hideQuestionCard, setHideQuestionCardState] = useState(false);
 
   let category = "history";
   let limit = 5;
@@ -25,17 +23,23 @@ export default function Main() {
       `https://the-trivia-api.com/api/questions?limit=${limit}&categories=${category}`
     )
       .then((resp) => resp.json())
-      .then((quizzes) => {
-        console.log(quizzes);
-        setQuizzes(quizzes);
+      .then((newQuizzes) => {
+        // debugger;
+        console.log(newQuizzes);
+        setQuizzes(newQuizzes);
       });
   };
 
   const hideQuestionsAndShowAnswers = (event) => {
-    if (event.target.getAttribute("style") === "display: block;") {
-      event.target.setAttribute("style", "display: none;");
-      event.target.nextSibling.setAttribute("style", "display: block;");
-    }
+    const questionCard = event.target.parentNode.parentNode;
+    setHideQuestionCardState(true);
+    console.log(questionCard.getAttribute("style"));
+
+    // console.log(questionCard.getAttribute("style"));
+    // if (questionCard.getAttribute("style") === "display: flex;") {
+    //   questionCard.setAttribute("style", "display: none;");
+    // event.target.nextSibling.setAttribute("style", "display: block;");
+    // }
   };
 
   const hideAnswersAndShowQuestions = (event) => {
@@ -47,7 +51,10 @@ export default function Main() {
 
   const styles = {
     main: { backgroundColor: "#C0C4DF" },
+    hide: { display: "none" },
+    show: { display: "block" },
   };
+
   return (
     <div className="main" style={styles.main}>
       <button onClick={getQuizzes}>click</button>
@@ -55,10 +62,13 @@ export default function Main() {
       {quizzes.map((quiz, index) => {
         return (
           <Question
+            key={index}
             question={quiz.question}
             category={quiz.category}
-            possibleAnswers={quiz.possibleAnswers}
+            possibleAnswers={quiz.incorrectAnswers}
             correctAnswer={quiz.correctAnswer}
+            hideQuestions={hideQuestionsAndShowAnswers}
+            style={hideQuestionCard ? { display: "none" } : {}}
           />
         );
       })}
