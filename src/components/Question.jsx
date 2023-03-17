@@ -6,6 +6,7 @@ export default function Question({
   possibleAnswers,
   correctAnswer,
   hideQuestions,
+  storeChosenAnswer,
   style,
 }) {
   const [hideQuestionCard, setHideQuestionCardState] = useState(false);
@@ -22,6 +23,7 @@ export default function Question({
       borderRadius: "7px",
       boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.5)",
       padding: "1rem",
+      margin: "2rem",
       ...style,
     },
     container: {
@@ -68,7 +70,10 @@ export default function Question({
                   key={index}
                   className="possibleAnswer"
                   style={styles.possibleAnswer}
-                  onClick={(event) => hideQuestions(event)}
+                  onClick={(event) => {
+                    hideQuestions(event);
+                    storeChosenAnswer(event);
+                  }}
                 >
                   {answer}
                 </span>

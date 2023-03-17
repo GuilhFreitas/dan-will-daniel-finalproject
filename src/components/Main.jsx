@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Question from "./Question";
+import Answer from "./Answer";
 
 export default function Main() {
   const [quizzes, setQuizzes] = useState([
@@ -14,9 +15,11 @@ export default function Main() {
   ]);
 
   const [hideQuestionCard, setHideQuestionCardState] = useState(false);
+  // const [hideAnswerCard, setHideAnswerCardState] = useState(true);
 
   let category = "history";
   let limit = 5;
+  let answerChosen = useRef("");
 
   const getQuizzes = () => {
     fetch(
@@ -24,7 +27,6 @@ export default function Main() {
     )
       .then((resp) => resp.json())
       .then((newQuizzes) => {
-        // debugger;
         console.log(newQuizzes);
         setQuizzes(newQuizzes);
       });
@@ -33,13 +35,6 @@ export default function Main() {
   const hideQuestionsAndShowAnswers = (event) => {
     const questionCard = event.target.parentNode.parentNode;
     setHideQuestionCardState(true);
-    console.log(questionCard.getAttribute("style"));
-
-    // console.log(questionCard.getAttribute("style"));
-    // if (questionCard.getAttribute("style") === "display: flex;") {
-    //   questionCard.setAttribute("style", "display: none;");
-    // event.target.nextSibling.setAttribute("style", "display: block;");
-    // }
   };
 
   const hideAnswersAndShowQuestions = (event) => {
@@ -49,10 +44,13 @@ export default function Main() {
     }
   };
 
+  const storeChosenAnswer = (event) => {
+    answerChosen.current = event.target.textContent;
+    console.log(answerChosen);
+  };
+
   const styles = {
-    main: { backgroundColor: "#C0C4DF" },
-    hide: { display: "none" },
-    show: { display: "block" },
+    main: { backgroundColor: "#C0C4DF", height: "200rem" },
   };
 
   return (
@@ -61,15 +59,26 @@ export default function Main() {
 
       {quizzes.map((quiz, index) => {
         return (
-          <Question
-            key={index}
-            question={quiz.question}
-            category={quiz.category}
-            possibleAnswers={quiz.incorrectAnswers}
-            correctAnswer={quiz.correctAnswer}
-            hideQuestions={hideQuestionsAndShowAnswers}
-            style={hideQuestionCard ? { display: "none" } : {}}
-          />
+          <>
+            <Question
+              key={index}
+              question={quiz.question}
+              category={quiz.category}
+              possibleAnswers={quiz.incorrectAnswers}
+              correctAnswer={quiz.correctAnswer}
+              hideQuestions={hideQuestionsAndShowAnswers}
+              style={hideQuestionCard ? { display: "none" } : {}}
+              storeChosenAnswer={storeChosenAnswer}
+              answerChosen={answerChosen}
+            />
+            <Answer
+              key={index + 1000}
+              correctAnswer={quiz.correctAnswer}
+              possibleAnswers={quiz.incorrectAnswers}
+              storeChosenAnswer={storeChosenAnswer}
+              answerChosen={answerChosen.current}
+            />
+          </>
         );
       })}
     </div>
