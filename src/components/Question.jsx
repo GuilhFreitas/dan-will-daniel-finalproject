@@ -8,8 +8,9 @@ export default function Question({
   hideQuestions,
   storeChosenAnswer,
   style,
+  hideQuestionCard,
 }) {
-  const [hideQuestionCard, setHideQuestionCardState] = useState(false);
+  // const [hideQuestionCard, setHideQuestionCardState] = useState(false);
 
   const styles = {
     questionCard: {
@@ -48,10 +49,10 @@ export default function Question({
     },
   };
 
-  const handleHideQuestions = (event) => {
-    setHideQuestionCardState(true); // set state variable to true
-    hideQuestions(event); // call parent function
-  };
+  // const handleHideQuestions = (event) => {
+  //   setHideQuestionCardState(true); // set state variable to true
+  //   hideQuestions(event); // call parent function
+  // };
 
   return (
     <div className="outer-div">

@@ -5,9 +5,10 @@ export default function Answer({
   correctAnswer,
   hideAnswers,
   answerChosen,
+  hideAnswerCard,
   style,
 }) {
-  const [hideAnswerCard, setHideAnswerCardState] = useState(false);
+  // const [hideAnswerCard, setHideAnswerCardState] = useState(false);
 
   const styles = {
     answerCard: {

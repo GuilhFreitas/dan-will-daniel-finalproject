@@ -15,7 +15,7 @@ export default function Main() {
   ]);
 
   const [hideQuestionCard, setHideQuestionCardState] = useState(false);
-  // const [hideAnswerCard, setHideAnswerCardState] = useState(true);
+  const [hideAnswerCard, setHideAnswerCardState] = useState(true);
 
   let category = "history";
   let limit = 5;
@@ -32,16 +32,17 @@ export default function Main() {
       });
   };
 
-  const hideQuestionsAndShowAnswers = (event) => {
-    const questionCard = event.target.parentNode.parentNode;
+  const hideQuestionsAndShowAnswers = () => {
     setHideQuestionCardState(true);
+    setHideAnswerCardState(false);
   };
 
-  const hideAnswersAndShowQuestions = (event) => {
-    if (event.target.getAttribute("style") === "display: block;") {
-      event.target.setAttribute("style", "display: none;");
-      event.target.previousSibling.setAttribute("style", "display: block;");
-    }
+  const hideAnswersAndShowQuestions = () => {
+    // if (event.target.getAttribute("style") === "display: block;") {
+    //   event.target.setAttribute("style", "display: none;");
+    //   event.target.previousSibling.setAttribute("style", "display: block;");
+    // }
+    // console.log(event);
   };
 
   const storeChosenAnswer = (event) => {
@@ -69,15 +70,19 @@ export default function Main() {
               hideQuestions={hideQuestionsAndShowAnswers}
               style={hideQuestionCard ? { display: "none" } : {}}
               storeChosenAnswer={storeChosenAnswer}
-              answerChosen={answerChosen}
+              hideQuestionCard={hideQuestionCard}
             />
-            <Answer
-              key={index + 1000}
-              correctAnswer={quiz.correctAnswer}
-              possibleAnswers={quiz.incorrectAnswers}
-              storeChosenAnswer={storeChosenAnswer}
-              answerChosen={answerChosen.current}
-            />
+            {hideAnswerCard ? null : (
+              <Answer
+                key={index + 1000}
+                correctAnswer={quiz.correctAnswer}
+                // possibleAnswers={quiz.incorrectAnswers}
+                storeChosenAnswer={storeChosenAnswer}
+                hideAnswers={hideAnswersAndShowQuestions}
+                answerChosen={answerChosen.current}
+                hideAnswerCard={hideAnswerCard}
+              />
+            )}
           </>
         );
       })}
