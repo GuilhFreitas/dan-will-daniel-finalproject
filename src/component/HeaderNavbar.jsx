@@ -12,7 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import "./HeaderNavbar.css";
 
-const styles = { 
+const styles = {  
   hide: { display: "none" },
   show: { display: "block" }
 };
@@ -34,7 +34,6 @@ function HeaderNavbar(props) {
     props.onDrawerToggle();
   };
   
-
   const nav = createTheme({
     palette: {
       primary: {
@@ -54,7 +53,6 @@ function HeaderNavbar(props) {
     },
   });
 
-  
   const dropDown = createTheme({
     palette: {
       primary: {
@@ -72,7 +70,6 @@ function HeaderNavbar(props) {
         <h1 className="neonText">Time</h1>
         </div>
       </header>
-
 
     <Box sx={{ flexGrow: 1 }}>
       <ThemeProvider theme={nav}>

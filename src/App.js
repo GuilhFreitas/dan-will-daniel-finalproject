@@ -62,7 +62,7 @@ function App() {
   return (
     <div className="App">
       <HeaderNavbar onQuizRequest={handleQuizRequest} onDrawerToggle={handleDrawerToggle} onNumCardsChange={setNumCards} />
-      <Box onClick={handleDrawerToggle} sx={{ flexGrow: 1 }}>
+       <Box onClick={handleDrawerToggle} sx={{ flexGrow: 1 }}>
         {quizzes.map((quiz) => (
           <div key={quiz.id}>
             <p style={styles.show} onClick={(event) => hideQuestionsAndShowAnswers(event)}>
