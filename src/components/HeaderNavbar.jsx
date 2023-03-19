@@ -14,34 +14,22 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "./HeaderNavbar.css";
 
 //function to create HeaderNavbar
-function HeaderNavbar({
-  getLimit,
-  getCategory,
-  getQuizzes,
-  setLimit,
-  setCategory,
-  category,
-  limit,
-}) {
-  //Defining constants for storing state variables- category and limit
-  // const [category, setCategory] = useState("");
-  // const [limit, setNumCards] = useState();
-
+function HeaderNavbar({ getQuizzes, setLimit, setCategory, category, limit }) {
   //Function to handle changes in category dropdown
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
+  // const handleCategoryChange = (event) => {
+  //   setCategory(event.target.value);
+  // };
 
   //Function to handle changes for number of cards dropdown
-  const handleNumCardsChange = (event) => {
-    setLimit(Number.parseInt(event.target.value));
-    // props.onNumCardsChange(Number.parseInt(event.target.value));
-  };
+  // const handleNumCardsChange = (event) => {
+  //   setLimit(Number.parseInt(event.target.value));
+  // props.onNumCardsChange(Number.parseInt(event.target.value));
+  // };
 
   //Function to handle DrawerToggle event
-  const handleDrawerToggle = () => {
-    // props.onDrawerToggle();
-  };
+  // const handleDrawerToggle = () => {
+  // props.onDrawerToggle();
+  // };
 
   //Creating themes using 'createTheme' function
   const nav = createTheme({

@@ -1,14 +1,10 @@
 import React, { useState, useRef } from "react";
 import Question from "./Question";
 import Answer from "./Answer";
+import { shuffle } from "lodash";
+import { positions } from "@mui/system";
 
-export default function Main({
-  category,
-  limit,
-  getQuizzes,
-  quizzes,
-  setQuizzes,
-}) {
+export default function Main({ quizzes }) {
   const [hideQuestionCard, setHideQuestionCardState] = useState(false);
   const [hideAnswerCard, setHideAnswerCardState] = useState(true);
 
@@ -30,6 +26,15 @@ export default function Main({
     main: { backgroundColor: "#C0C4DF", height: "200rem" },
   };
 
+  const getPossibleAnswers = (quiz) => {
+    quiz.incorrectAnswers.push(quiz.correctAnswer);
+    quiz.incorrectAnswers.shift();
+    console.log(quiz.incorrectAnswers);
+    const shuffledArray = shuffle(quiz.incorrectAnswers);
+    return shuffledArray;
+  };
+
+  console.log(quizzes);
   return (
     <div className="main" style={styles.main}>
       {quizzes.map((quiz, index) => {
@@ -39,7 +44,8 @@ export default function Main({
               key={index}
               question={quiz.question}
               category={quiz.category}
-              possibleAnswers={quiz.incorrectAnswers}
+              possibleAnswers={getPossibleAnswers(quiz)}
+              // possibleAnswers={quiz.incorrectAnswers}
               correctAnswer={quiz.correctAnswer}
               hideQuestions={hideQuestionsAndShowAnswers}
               style={hideQuestionCard ? { display: "none" } : {}}

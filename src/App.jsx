@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import Main from "./components/Main";
 import HeaderNavbar from "./components/HeaderNavbar";
+import _ from "lodash";
+import shuffle from "lodash/shuffle";
 
 function App() {
   const [quizzes, setQuizzes] = useState([
@@ -9,7 +11,7 @@ function App() {
       category: "♪ Music",
       question: "Which musician released the album 'Off the Wall'?",
       correctAnswer: "Micheal Jackson",
-      incorrectAnswers: ["Neil Young", "Eric the Clap"],
+      incorrectAnswers: ["Neil Young", "Eric the Clap", "jesus"],
       possibleAnswers: ["Neil Young", "Eric the Clap", "Micheal Jackson"],
       id: 0,
     },
