@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Question from "./Question";
 import Answer from "./Answer";
 import { shuffle } from "lodash";
-import { positions } from "@mui/system";
+// import { positions } from "@mui/system";
 
 export default function Main({ quizzes }) {
   const [hideQuestionCard, setHideQuestionCardState] = useState(false);

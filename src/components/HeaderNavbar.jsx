@@ -90,7 +90,7 @@ function HeaderNavbar({ getQuizzes, setLimit, setCategory, category, limit }) {
                   onClick={getQuizzes}
                   variant="contained"
                 >
-                  Quiz
+                  Get Cards
                 </Button>
               </ThemeProvider>
 
@@ -107,7 +107,9 @@ function HeaderNavbar({ getQuizzes, setLimit, setCategory, category, limit }) {
                       value={category}
                       label="Category"
                       // onChange={handleCategoryChange}
-                      onChange={(event) => setCategory(event.target.value)}
+                      onChange={(event) =>
+                        (category.current = event.target.value)
+                      }
                     >
                       <MenuItem value="Arts & Literature">
                         Arts &amp; Literature
@@ -136,7 +138,7 @@ function HeaderNavbar({ getQuizzes, setLimit, setCategory, category, limit }) {
                       value={limit}
                       label="Cards"
                       // onChange={handleNumCardsChange}
-                      onChange={(event) => setLimit(event.target.value)}
+                      onChange={(event) => (limit.current = event.target.value)}
                     >
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="5">5</MenuItem>

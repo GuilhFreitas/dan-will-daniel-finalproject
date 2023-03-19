@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import Main from "./components/Main";
 import HeaderNavbar from "./components/HeaderNavbar";
@@ -16,12 +16,14 @@ function App() {
       id: 0,
     },
   ]);
-  const [category, setCategory] = useState("");
-  const [limit, setLimit] = useState(5);
+  // const [category, setCategory] = useState("");
+  // const [limit, setLimit] = useState(5);
+  const category = useRef("");
+  const limit = useRef(5);
 
   const getQuizzes = () => {
     fetch(
-      `https://the-trivia-api.com/api/questions?limit=${limit}&categories=${category}`
+      `https://the-trivia-api.com/api/questions?limit=${limit.current}&categories=${category.current}`
     )
       .then((resp) => resp.json())
       .then((newQuizzes) => {
@@ -34,8 +36,8 @@ function App() {
     <div className="App">
       <HeaderNavbar
         getQuizzes={getQuizzes}
-        setCategory={setCategory}
-        setLimit={setLimit}
+        // setCategory={setCategory}
+        // setLimit={setLimit}
         limit={limit}
         category={category}
       />
