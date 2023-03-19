@@ -3,9 +3,6 @@ import "./App.css";
 import Main from "./components/Main";
 import HeaderNavbar from "./components/HeaderNavbar";
 
-let category = "history";
-let limit = 5;
-
 function App() {
   const [quizzes, setQuizzes] = useState([
     {
@@ -17,6 +14,8 @@ function App() {
       id: 0,
     },
   ]);
+  const [category, setCategory] = useState("");
+  const [limit, setLimit] = useState(5);
 
   const getQuizzes = () => {
     fetch(
@@ -31,14 +30,14 @@ function App() {
 
   return (
     <div className="App">
-      <HeaderNavbar getQuizzes={getQuizzes} />
-      <Main
-        category={category}
-        limit={limit}
+      <HeaderNavbar
         getQuizzes={getQuizzes}
-        quizzes={quizzes}
-        setQuizzes={setQuizzes}
+        setCategory={setCategory}
+        setLimit={setLimit}
+        limit={limit}
+        category={category}
       />
+      <Main getQuizzes={getQuizzes} quizzes={quizzes} setQuizzes={setQuizzes} />
     </div>
   );
 }

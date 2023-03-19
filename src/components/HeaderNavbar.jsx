@@ -14,10 +14,18 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "./HeaderNavbar.css";
 
 //function to create HeaderNavbar
-function HeaderNavbar(props) {
+function HeaderNavbar({
+  getLimit,
+  getCategory,
+  getQuizzes,
+  setLimit,
+  setCategory,
+  category,
+  limit,
+}) {
   //Defining constants for storing state variables- category and limit
-  const [category, setCategory] = useState("");
-  const [limit, setNumCards] = useState();
+  // const [category, setCategory] = useState("");
+  // const [limit, setNumCards] = useState();
 
   //Function to handle changes in category dropdown
   const handleCategoryChange = (event) => {
@@ -26,13 +34,13 @@ function HeaderNavbar(props) {
 
   //Function to handle changes for number of cards dropdown
   const handleNumCardsChange = (event) => {
-    setNumCards(Number.parseInt(event.target.value));
-    props.onNumCardsChange(Number.parseInt(event.target.value));
+    setLimit(Number.parseInt(event.target.value));
+    // props.onNumCardsChange(Number.parseInt(event.target.value));
   };
 
   //Function to handle DrawerToggle event
   const handleDrawerToggle = () => {
-    props.onDrawerToggle();
+    // props.onDrawerToggle();
   };
 
   //Creating themes using 'createTheme' function
@@ -81,7 +89,7 @@ function HeaderNavbar(props) {
                 color="inherit"
                 aria-label="open drawer"
                 edge="start"
-                onClick={handleDrawerToggle}
+                // onClick={handleDrawerToggle}
                 sx={{ mr: 2, display: { sm: "none" } }}
               >
                 <MenuIcon />
@@ -91,7 +99,7 @@ function HeaderNavbar(props) {
               <ThemeProvider theme={btn}>
                 <Button
                   // onClick={() => props.onQuizRequest(category, limit)}
-                  onClick={props.getQuizzes}
+                  onClick={getQuizzes}
                   variant="contained"
                 >
                   Quiz
@@ -110,7 +118,8 @@ function HeaderNavbar(props) {
                       id="demo-simple-select"
                       value={category}
                       label="Category"
-                      onChange={handleCategoryChange}
+                      // onChange={handleCategoryChange}
+                      onChange={(event) => setCategory(event.target.value)}
                     >
                       <MenuItem value="Arts & Literature">
                         Arts &amp; Literature
@@ -138,7 +147,8 @@ function HeaderNavbar(props) {
                       id="demo-simple-select"
                       value={limit}
                       label="Cards"
-                      onChange={handleNumCardsChange}
+                      // onChange={handleNumCardsChange}
+                      onChange={(event) => setLimit(event.target.value)}
                     >
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="5">5</MenuItem>
