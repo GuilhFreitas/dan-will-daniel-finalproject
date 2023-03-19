@@ -2,48 +2,24 @@ import React, { useState, useRef } from "react";
 import Question from "./Question";
 import Answer from "./Answer";
 
-export default function Main() {
-  const [quizzes, setQuizzes] = useState([
-    {
-      category: "♪ Music",
-      question: "Which musician released the album 'Off the Wall'?",
-      correctAnswer: "Micheal Jackson",
-      incorrectAnswers: ["Neil Young", "Eric the Clap"],
-      possibleAnswers: ["Neil Young", "Eric the Clap", "Micheal Jackson"],
-      id: 0,
-    },
-  ]);
-
+export default function Main({
+  category,
+  limit,
+  getQuizzes,
+  quizzes,
+  setQuizzes,
+}) {
   const [hideQuestionCard, setHideQuestionCardState] = useState(false);
   const [hideAnswerCard, setHideAnswerCardState] = useState(true);
 
-  let category = "history";
-  let limit = 5;
   let answerChosen = useRef("");
-
-  const getQuizzes = () => {
-    fetch(
-      `https://the-trivia-api.com/api/questions?limit=${limit}&categories=${category}`
-    )
-      .then((resp) => resp.json())
-      .then((newQuizzes) => {
-        console.log(newQuizzes);
-        setQuizzes(newQuizzes);
-      });
-  };
 
   const hideQuestionsAndShowAnswers = () => {
     setHideQuestionCardState(true);
     setHideAnswerCardState(false);
   };
 
-  const hideAnswersAndShowQuestions = () => {
-    // if (event.target.getAttribute("style") === "display: block;") {
-    //   event.target.setAttribute("style", "display: none;");
-    //   event.target.previousSibling.setAttribute("style", "display: block;");
-    // }
-    // console.log(event);
-  };
+  const hideAnswersAndShowQuestions = () => {};
 
   const storeChosenAnswer = (event) => {
     answerChosen.current = event.target.textContent;
@@ -56,8 +32,6 @@ export default function Main() {
 
   return (
     <div className="main" style={styles.main}>
-      <button onClick={getQuizzes}>click</button>
-
       {quizzes.map((quiz, index) => {
         return (
           <>

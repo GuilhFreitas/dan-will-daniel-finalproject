@@ -90,7 +90,8 @@ function HeaderNavbar(props) {
               {/* Creating button with variant using High Order Components */}
               <ThemeProvider theme={btn}>
                 <Button
-                  onClick={() => props.onQuizRequest(category, limit)}
+                  // onClick={() => props.onQuizRequest(category, limit)}
+                  onClick={props.getQuizzes}
                   variant="contained"
                 >
                   Quiz
