@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Save from "./Save";
 
 export default function Answer({
   possibleAnswers,
@@ -53,6 +54,7 @@ export default function Answer({
         <div className="answerCard" style={styles.answerCard}>
           <p>{answerChosen}</p>
           <p>{correctAnswer}</p>
+          <Save/>
         </div>
       </div>
     </div>
