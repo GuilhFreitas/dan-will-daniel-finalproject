@@ -1,63 +1,39 @@
 import React, { useState, useRef } from "react";
 import Question from "./Question";
 import Answer from "./Answer";
+import { shuffle } from "lodash";
+import "./style/Main.css"
+// import { positions } from "@mui/system";
 
-export default function Main() {
-  const [quizzes, setQuizzes] = useState([
-    {
-      category: "♪ Music",
-      question: "Which musician released the album 'Off the Wall'?",
-      correctAnswer: "Micheal Jackson",
-      incorrectAnswers: ["Neil Young", "Eric the Clap"],
-      possibleAnswers: ["Neil Young", "Eric the Clap", "Micheal Jackson"],
-      id: 0,
-    },
-  ]);
-
+export default function Main({ quizzes }) {
   const [hideQuestionCard, setHideQuestionCardState] = useState(false);
   const [hideAnswerCard, setHideAnswerCardState] = useState(true);
 
-  let category = "history";
-  let limit = 5;
   let answerChosen = useRef("");
-
-  const getQuizzes = () => {
-    fetch(
-      `https://the-trivia-api.com/api/questions?limit=${limit}&categories=${category}`
-    )
-      .then((resp) => resp.json())
-      .then((newQuizzes) => {
-        console.log(newQuizzes);
-        setQuizzes(newQuizzes);
-      });
-  };
 
   const hideQuestionsAndShowAnswers = () => {
     setHideQuestionCardState(true);
     setHideAnswerCardState(false);
   };
 
-  const hideAnswersAndShowQuestions = () => {
-    // if (event.target.getAttribute("style") === "display: block;") {
-    //   event.target.setAttribute("style", "display: none;");
-    //   event.target.previousSibling.setAttribute("style", "display: block;");
-    // }
-    // console.log(event);
-  };
+  const hideAnswersAndShowQuestions = () => {};
 
   const storeChosenAnswer = (event) => {
     answerChosen.current = event.target.textContent;
     console.log(answerChosen);
   };
 
-  const styles = {
-    main: { backgroundColor: "#C0C4DF", height: "200rem" },
+  const getPossibleAnswers = (quiz) => {
+    quiz.incorrectAnswers.push(quiz.correctAnswer);
+    quiz.incorrectAnswers.shift();
+    console.log(quiz.incorrectAnswers);
+    const shuffledArray = shuffle(quiz.incorrectAnswers);
+    return shuffledArray;
   };
 
+  console.log(quizzes);
   return (
-    <div className="main" style={styles.main}>
-      <button onClick={getQuizzes}>click</button>
-
+    <div className="main" >
       {quizzes.map((quiz, index) => {
         return (
           <>
@@ -65,7 +41,8 @@ export default function Main() {
               key={index}
               question={quiz.question}
               category={quiz.category}
-              possibleAnswers={quiz.incorrectAnswers}
+              possibleAnswers={getPossibleAnswers(quiz)}
+              // possibleAnswers={quiz.incorrectAnswers}
               correctAnswer={quiz.correctAnswer}
               hideQuestions={hideQuestionsAndShowAnswers}
               style={hideQuestionCard ? { display: "none" } : {}}

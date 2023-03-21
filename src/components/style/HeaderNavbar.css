@@ -1,6 +1,6 @@
 .App-header {
     background-color: #282c34;
-    background-image: url('../../public/synthwave-retro-2.jpg');
+    background-image: url('../../../public/synthwave-retro-2.jpg');
     background-size: 1020px 450px;
     align-items: center;
     justify-content: center;
@@ -94,7 +94,7 @@
       0 0 92px #f09,
       0 0 102px #f09,
       0 0 151px #f09
-  }
+    }
   }
   
   @keyframes flicker {
@@ -110,7 +110,6 @@
         0 0 80px #f09,
         0 0 94px #f09,
         0 0 140px #f09;
-    
     }
     
     20%, 24%, 55% {        
@@ -118,13 +117,11 @@
     }    
   }
   
-  @media (width:1038px) {
+  @media (max-width:1000px) {
     
     .App-header {
-      
       background-repeat: no-repeat;
       background-size: cover;
     }
-    
 
   }
