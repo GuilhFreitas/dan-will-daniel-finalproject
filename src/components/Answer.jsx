@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 
 export default function Answer({
-  // possibleAnswers,
   correctAnswer,
-  // hideAnswers,
   answerChosen,
   hideAnswerCard,
-  // style,
   questionId,
   answerId,
   setHideAnswerCardState,
@@ -49,8 +46,8 @@ export default function Answer({
     },
   };
 
-  console.log(questionId.current);
-  console.log(answerId);
+  // console.log(questionId.current);
+  // console.log(answerId);
 
   // Render the component conditionally based on whether questionId is equal to answerId
 

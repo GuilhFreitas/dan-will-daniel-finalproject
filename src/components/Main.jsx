@@ -4,18 +4,17 @@ import Answer from "./Answer";
 import { shuffle } from "lodash";
 
 export default function Main({ quizzes }) {
-  // const [hideQuestionCard, setHideQuestionCardState] = useState(false);
   const [hideAnswerCard, setHideAnswerCardState] = useState(true);
   const answerChosen = useRef("");
   const questionId = useRef(undefined);
   const answerId = useRef(undefined);
 
-  const hideQuestionsAndShowAnswers = () => {
-    // setHideQuestionCardState(true);
-    // setHideAnswerCardState(false);
-  };
-
-  const hideAnswersAndShowQuestions = () => {};
+  // const reset = () => {
+  //   setHideAnswerCardState(true);
+  //   answerChosen.current = "";
+  //   questionId.current = undefined;
+  //   answerId.current = undefined;
+  // };
 
   const storeChosenAnswer = (event) => {
     answerChosen.current = event.target.textContent;
@@ -26,14 +25,24 @@ export default function Main({ quizzes }) {
   };
 
   const getPossibleAnswers = (quiz) => {
-    quiz.incorrectAnswers.push(quiz.correctAnswer);
-    quiz.incorrectAnswers.shift();
+    if (!quiz.incorrectAnswers.includes(quiz.correctAnswer)) {
+      quiz.incorrectAnswers.shift();
+      quiz.incorrectAnswers.push(quiz.correctAnswer);
+    }
     const shuffledArray = shuffle(quiz.incorrectAnswers);
     return shuffledArray;
   };
 
   return (
-    <div className="main" style={styles.main}>
+    <div
+      className="main"
+      style={styles.main}
+      onClick={(event) => {
+        if (event.target.class === "possibleAnswer") {
+          setHideAnswerCardState(true);
+        }
+      }}
+    >
       {quizzes.map((quiz, index) => {
         return (
           <div key={index}>
@@ -42,7 +51,6 @@ export default function Main({ quizzes }) {
               category={quiz.category}
               possibleAnswers={getPossibleAnswers(quiz)}
               correctAnswer={quiz.correctAnswer}
-              hideQuestions={hideQuestionsAndShowAnswers}
               storeChosenAnswer={storeChosenAnswer}
               setHideAnswerCardState={setHideAnswerCardState}
               questionId={questionId}
@@ -52,7 +60,6 @@ export default function Main({ quizzes }) {
             <Answer
               correctAnswer={quiz.correctAnswer}
               storeChosenAnswer={storeChosenAnswer}
-              hideAnswers={hideAnswersAndShowQuestions}
               setHideAnswerCardState={setHideAnswerCardState}
               answerChosen={answerChosen.current}
               hideAnswerCard={hideAnswerCard}
