@@ -3,7 +3,6 @@ import "./App.css";
 import Main from "./components/Main";
 import HeaderNavbar from "./components/HeaderNavbar";
 import _ from "lodash";
-import shuffle from "lodash/shuffle";
 
 function App() {
   const [quizzes, setQuizzes] = useState([
@@ -13,11 +12,9 @@ function App() {
       correctAnswer: "Micheal Jackson",
       incorrectAnswers: ["Neil Young", "Eric the Clap", "jesus"],
       possibleAnswers: ["Neil Young", "Eric the Clap", "Micheal Jackson"],
-      id: 0,
     },
   ]);
-  // const [category, setCategory] = useState("");
-  // const [limit, setLimit] = useState(5);
+
   const category = useRef("");
   const limit = useRef(5);
 
@@ -34,13 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <HeaderNavbar
-        getQuizzes={getQuizzes}
-        // setCategory={setCategory}
-        // setLimit={setLimit}
-        limit={limit}
-        category={category}
-      />
+      <HeaderNavbar getQuizzes={getQuizzes} limit={limit} category={category} />
       <Main getQuizzes={getQuizzes} quizzes={quizzes} setQuizzes={setQuizzes} />
     </div>
   );

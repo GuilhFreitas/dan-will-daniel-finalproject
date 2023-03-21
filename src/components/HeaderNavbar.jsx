@@ -14,22 +14,18 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "./HeaderNavbar.css";
 
 //function to create HeaderNavbar
-function HeaderNavbar({ getQuizzes, setLimit, setCategory, category, limit }) {
-  //Function to handle changes in category dropdown
-  // const handleCategoryChange = (event) => {
-  //   setCategory(event.target.value);
-  // };
-
-  //Function to handle changes for number of cards dropdown
-  // const handleNumCardsChange = (event) => {
-  //   setLimit(Number.parseInt(event.target.value));
-  // props.onNumCardsChange(Number.parseInt(event.target.value));
-  // };
-
-  //Function to handle DrawerToggle event
-  // const handleDrawerToggle = () => {
-  // props.onDrawerToggle();
-  // };
+function HeaderNavbar({
+  getQuizzes,
+  setLimit,
+  setCategory,
+  category,
+  limit,
+  props,
+}) {
+  // Function to handle DrawerToggle event
+  const handleDrawerToggle = () => {
+    props.onDrawerToggle();
+  };
 
   //Creating themes using 'createTheme' function
   const nav = createTheme({
@@ -104,7 +100,6 @@ function HeaderNavbar({ getQuizzes, setLimit, setCategory, category, limit }) {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={category}
                       label="Category"
                       // onChange={handleCategoryChange}
                       onChange={(event) =>
@@ -135,7 +130,6 @@ function HeaderNavbar({ getQuizzes, setLimit, setCategory, category, limit }) {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={limit}
                       label="Cards"
                       // onChange={handleNumCardsChange}
                       onChange={(event) => (limit.current = event.target.value)}

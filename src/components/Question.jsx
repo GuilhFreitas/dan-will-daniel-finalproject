@@ -5,13 +5,14 @@ export default function Question({
   category,
   possibleAnswers,
   correctAnswer,
-  hideQuestions,
+  // hideQuestions,
   storeChosenAnswer,
   style,
-  hideQuestionCard,
+  // hideQuestionCard,
+  setHideAnswerCardState,
 }) {
-  // const [hideQuestionCard, setHideQuestionCardState] = useState(false);
-
+  const [hideQuestionCard, setHideQuestionCardState] = useState(false);
+  // const [hideAnswerCard, setHideAnswerCardState] = useState(true);
   const styles = {
     questionCard: {
       backgroundColor: "#E1F6FA",
@@ -49,11 +50,6 @@ export default function Question({
     },
   };
 
-  // const handleHideQuestions = (event) => {
-  //   setHideQuestionCardState(true); // set state variable to true
-  //   hideQuestions(event); // call parent function
-  // };
-
   return (
     <div className="outer-div">
       <div style={styles.container}>
@@ -72,7 +68,9 @@ export default function Question({
                   className="possibleAnswer"
                   style={styles.possibleAnswer}
                   onClick={(event) => {
-                    hideQuestions(event);
+                    // hideQuestions(event);
+                    setHideQuestionCardState(true);
+                    setHideAnswerCardState(false);
                     storeChosenAnswer(event);
                   }}
                 >

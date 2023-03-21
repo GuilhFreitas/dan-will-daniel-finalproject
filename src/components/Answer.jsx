@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 
 export default function Answer({
-  possibleAnswers,
+  // possibleAnswers,
   correctAnswer,
-  hideAnswers,
+  // hideAnswers,
   answerChosen,
   hideAnswerCard,
-  style,
+  // style,
+  questionId,
 }) {
-  // const [hideAnswerCard, setHideAnswerCardState] = useState(false);
+  // const [hideAnswerCard, setHideAnswerCardState] = useState(true);
 
   const styles = {
     answerCard: {
@@ -48,13 +49,15 @@ export default function Answer({
 
   console.log(answerChosen);
   return (
-    <div className="outer-div">
-      <div style={styles.container}>
-        <div className="answerCard" style={styles.answerCard}>
-          <p>{answerChosen}</p>
-          <p>{correctAnswer}</p>
+    !hideAnswerCard && (
+      <div className="outer-div">
+        <div style={styles.container}>
+          <div className="answerCard" style={styles.answerCard}>
+            <p>{answerChosen}</p>
+            <p>{correctAnswer}</p>
+          </div>
         </div>
       </div>
-    </div>
+    )
   );
 }
