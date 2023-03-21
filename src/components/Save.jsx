@@ -1,5 +1,3 @@
-// import { saveAs } from 'file-saver';
-
 export default function Save(props){
     const styles = {
         backgroundColor: "red",
@@ -10,11 +8,23 @@ export default function Save(props){
         textAlign: "center"
     }
 
-    const FileSaver = require('file-saver');
-    const blob = new Blob(["Hello, world!"], {type: "text/plain;charset=utf-8"});
+    async function saveCard(){
+        async function invoke(action, version, params={}) {
+            const response = await fetch ('http://127.0.0.1:8765', {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                body: JSON.stringify({action, version, params}),
 
-    function saveCard(){
-        FileSaver.saveAs(blob, "cards.txt");
+            });
+            return response.json();
+            };
+        
+        await invoke ('requestPermission', 6);
+        await invoke('createDeck', 6, {deck: 'test1'});
+        const result = await invoke('deckNames', 6);
+        console.log(`got list of decks: ${result}`);
     }
 
 
