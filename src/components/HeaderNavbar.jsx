@@ -1,5 +1,5 @@
 //import statements for required components
-import React, {useState}from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -11,21 +11,50 @@ import IconButton from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
 import MenuIcon from "@mui/icons-material/Menu";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import About from "./About";
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import Typography from '@mui/material/Typography';
+
 import "./style/HeaderNavbar.css";
 
+
+const drawerWidth = 240;
+const navItems = [ 'About'];
+
 //function to create HeaderNavbar
-function HeaderNavbar({ props, getQuizzes,  category, limit }) {
+export default function HeaderNavbar({ getQuizzes,  category, limit }) {
 
-  const [showAbout , setShowAbout] = useState ();
- 
-  //Function to handle DrawerToggle event
-  const handleDrawerToggle = () => {
-  setShowAbout(true)
-  props.onDrawerToggle();
-  };
 
-  //Creating themes using 'createTheme' function
+
+const [mobileOpen, setMobileOpen] = React.useState(false);
+  
+const handleDrawerToggle = () => {
+      setMobileOpen((prevState) => !prevState);
+};
+  
+    const drawer = (
+      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+        <Typography variant="h6" sx={{ my: 2 }}>
+         Quiz Time
+        </Typography>
+        <Divider />
+        <List>
+          {navItems.map((item) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+    );
+
+  //Creating themes using 'createTheme' function\
   const nav = createTheme({
     palette: {
       primary: {
@@ -62,23 +91,22 @@ function HeaderNavbar({ props, getQuizzes,  category, limit }) {
           <h1 className="neonText">Time</h1>
         </div>
       </header>
+      
+    <Box sx={{ flexGrow: 1 }}>
+    <ThemeProvider theme={nav}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
 
-      <Box sx={{ flexGrow: 1 }}>
-        <ThemeProvider theme={nav}>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { sm: "none" } }}
-              >
-                <MenuIcon />
-              </IconButton>
-
-              {/* Creating button with variant using High Order Components */}
-              <ThemeProvider theme={btn}>
+          <ThemeProvider theme={btn}>
                 <Button
                   // onClick={() => props.onQuizRequest(category, limit)}
                   onClick={getQuizzes}
@@ -88,7 +116,6 @@ function HeaderNavbar({ props, getQuizzes,  category, limit }) {
                 </Button>
               </ThemeProvider>
 
-              {/* Creating dropdowns with options using High Order Components */}
               <ThemeProvider theme={dropDown}>
                 <Box sx={{ minWidth: 120, margin: 2 }}>
                   <FormControl fullWidth>
@@ -99,7 +126,7 @@ function HeaderNavbar({ props, getQuizzes,  category, limit }) {
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       label="Category"
-                      // onChange={handleCategoryChange}
+          
                       onChange={(event) =>
                         (category.current = event.target.value)
                       }
@@ -132,7 +159,7 @@ function HeaderNavbar({ props, getQuizzes,  category, limit }) {
                       // onChange={handleNumCardsChange}
                       onChange={(event) => (limit.current = event.target.value)}
                     >
-                      <MenuItem value="1">1</MenuItem>
+                      <MenuItem value="1">1</MenuItem>                      
                       <MenuItem value="5">5</MenuItem>
                       <MenuItem value="10">10</MenuItem>
                       <MenuItem value="15">15</MenuItem>
@@ -140,26 +167,35 @@ function HeaderNavbar({ props, getQuizzes,  category, limit }) {
                   </FormControl>
                 </Box>
               </ThemeProvider>
+          <Box sx={{ flexGrow: 2, display: { xs: 'none', sm: 'block' } }}>
+            {navItems.map((item) => (
+              <Button key={item} sx={{ color: '#212121' }}>
+                {item}
+              </Button>
+            ))}
+          </Box>
+        </Toolbar>
+      </AppBar>
 
-                 <ThemeProvider >
-               <Box  sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
-        
-                <Button  sx={{ color: '#212121' }}
-                 onClick={<About />}
-                 variant="contained"
-               >
-                     About
-                   </Button>
-               </Box>
-               
-              </ThemeProvider>
-            </Toolbar>
-          </AppBar>
-        </ThemeProvider>
+      <Box component="nav">
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+      </ThemeProvider>
       </Box>
     </div>
   );
 }
-
-export default HeaderNavbar;
 

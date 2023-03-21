@@ -19,8 +19,7 @@ function App() {
       id: 0,
     },
   ]);
-  // const [category, setCategory] = useState("");
-  // const [limit, setLimit] = useState(5);
+
   const category = useRef("");
   const limit = useRef(5);
 
@@ -35,17 +34,12 @@ function App() {
       });
   };
 
+    
   return (
     <div className="App">
-      <HeaderNavbar
-        getQuizzes={getQuizzes}
-        // setCategory={setCategory}
-        // setLimit={setLimit} 
-        limit={limit}
-        category={category}
-      />
+      <HeaderNavbar getQuizzes={getQuizzes} limit={limit} category={category}/>
       <Main getQuizzes={getQuizzes} quizzes={quizzes} setQuizzes={setQuizzes} />
-
+    <About />
     <Footer />
     </div>
   );
