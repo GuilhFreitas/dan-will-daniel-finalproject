@@ -7,8 +7,8 @@ export default function Main({ quizzes }) {
   // const [hideQuestionCard, setHideQuestionCardState] = useState(false);
   const [hideAnswerCard, setHideAnswerCardState] = useState(true);
   const answerChosen = useRef("");
-  // const questionId = useRef(undefined);
-  // const answerId = useRef(undefined);
+  const questionId = useRef(undefined);
+  const answerId = useRef(undefined);
 
   const hideQuestionsAndShowAnswers = () => {
     // setHideQuestionCardState(true);
@@ -45,17 +45,19 @@ export default function Main({ quizzes }) {
               hideQuestions={hideQuestionsAndShowAnswers}
               storeChosenAnswer={storeChosenAnswer}
               setHideAnswerCardState={setHideAnswerCardState}
-              // questionId={quiz.id}
+              questionId={questionId}
+              quizId={quiz.id}
             />
 
             <Answer
               correctAnswer={quiz.correctAnswer}
               storeChosenAnswer={storeChosenAnswer}
               hideAnswers={hideAnswersAndShowQuestions}
+              setHideAnswerCardState={setHideAnswerCardState}
               answerChosen={answerChosen.current}
               hideAnswerCard={hideAnswerCard}
-              // questionId={quiz.id}
-              // answerId={quiz.id}
+              questionId={questionId}
+              answerId={quiz.id}
             />
           </div>
         );

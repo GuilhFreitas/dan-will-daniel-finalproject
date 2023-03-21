@@ -10,6 +10,8 @@ export default function Question({
   style,
   // hideQuestionCard,
   setHideAnswerCardState,
+  questionId,
+  quizId,
 }) {
   const [hideQuestionCard, setHideQuestionCardState] = useState(false);
   // const [hideAnswerCard, setHideAnswerCardState] = useState(true);
@@ -72,6 +74,7 @@ export default function Question({
                     setHideQuestionCardState(true);
                     setHideAnswerCardState(false);
                     storeChosenAnswer(event);
+                    questionId.current = quizId;
                   }}
                 >
                   {answer}

@@ -8,6 +8,8 @@ export default function Answer({
   hideAnswerCard,
   // style,
   questionId,
+  answerId,
+  setHideAnswerCardState,
 }) {
   // const [hideAnswerCard, setHideAnswerCardState] = useState(true);
 
@@ -47,17 +49,19 @@ export default function Answer({
     },
   };
 
-  console.log(answerChosen);
-  return (
-    !hideAnswerCard && (
-      <div className="outer-div">
-        <div style={styles.container}>
-          <div className="answerCard" style={styles.answerCard}>
-            <p>{answerChosen}</p>
-            <p>{correctAnswer}</p>
-          </div>
+  console.log(questionId.current);
+  console.log(answerId);
+
+  // Render the component conditionally based on whether questionId is equal to answerId
+
+  return questionId.current === answerId ? (
+    <div className="outer-div">
+      <div style={styles.container}>
+        <div className="answerCard" style={styles.answerCard}>
+          {answerChosen !== correctAnswer ? <p>{answerChosen}</p> : ""}
+          <p>{correctAnswer}</p>
         </div>
       </div>
-    )
-  );
+    </div>
+  ) : null;
 }
