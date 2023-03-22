@@ -14,14 +14,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "./HeaderNavbar.css";
 
 //function to create HeaderNavbar
-function HeaderNavbar({
-  getQuizzes,
-  setLimit,
-  setCategory,
-  category,
-  limit,
-  props,
-}) {
+function HeaderNavbar({ getQuizzes, category, limit, props }) {
   // Function to handle DrawerToggle event
   const handleDrawerToggle = () => {
     props.onDrawerToggle();

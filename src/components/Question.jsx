@@ -4,16 +4,11 @@ export default function Question({
   question,
   category,
   possibleAnswers,
-  storeChosenAnswer,
   style,
-  setHideAnswerCardState,
-  questionId,
-  quizId,
   correctAnswer,
 }) {
-  const [hideQuestionCard, setHideQuestionCardState] = useState(false);
-  // const [hideAnswerCard, setHideAnswerCardState] = useState(true);
   const [backgroundCol, setBackgroundCol] = useState("#28C1C9");
+
   const [correctCol, setCorrectCol] = useState("#28C1C9");
   const [incorrectCol, setIncorrectCol] = useState("#28C1C9");
   const styles = {
@@ -21,7 +16,7 @@ export default function Question({
       backgroundColor: "#E1F6FA",
       height: "9rem",
       width: "20rem",
-      display: hideQuestionCard ? "none" : "flex",
+      display: "flex",
       flexDirection: "column",
       color: "purple",
       justifyContent: "space-around",
@@ -92,11 +87,8 @@ export default function Question({
                       : styles.correctAnswer
                   }
                   onClick={(event) => {
-                    // event.target.style = { };
-
-                    setCorrectCol("green");
-
-                    setIncorrectCol("red");
+                    setCorrectCol("#225C03");
+                    setIncorrectCol("#DB2E2B");
                   }}
                 >
                   {answer}
