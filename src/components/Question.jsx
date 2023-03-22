@@ -9,9 +9,13 @@ export default function Question({
   setHideAnswerCardState,
   questionId,
   quizId,
+  correctAnswer,
 }) {
   const [hideQuestionCard, setHideQuestionCardState] = useState(false);
   // const [hideAnswerCard, setHideAnswerCardState] = useState(true);
+  const [backgroundCol, setBackgroundCol] = useState("#28C1C9");
+  const [correctCol, setCorrectCol] = useState("#28C1C9");
+  const [incorrectCol, setIncorrectCol] = useState("#28C1C9");
   const styles = {
     questionCard: {
       backgroundColor: "#E1F6FA",
@@ -40,7 +44,23 @@ export default function Question({
     },
     answers: { display: "flex", justifyContent: "space-around" },
     possibleAnswer: {
-      backgroundColor: "#28C1C9",
+      backgroundColor: backgroundCol,
+      padding: "0.4rem",
+      borderRadius: "5px",
+      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.5)",
+      fontSize: "0.7rem",
+      color: "white",
+    },
+    wrongAnswer: {
+      backgroundColor: incorrectCol,
+      padding: "0.4rem",
+      borderRadius: "5px",
+      boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.5)",
+      fontSize: "0.7rem",
+      color: "white",
+    },
+    correctAnswer: {
+      backgroundColor: correctCol,
       padding: "0.4rem",
       borderRadius: "5px",
       boxShadow: "0px 2px 6px rgba(0, 0, 0, 0.5)",
@@ -61,17 +81,22 @@ export default function Question({
           </div>
           <div className={"answers"} style={styles.answers}>
             {possibleAnswers.map((answer, index) => {
+              console.log(answer !== correctAnswer);
               return (
                 <span
                   key={index}
                   className="possibleAnswer"
-                  style={styles.possibleAnswer}
+                  style={
+                    answer !== correctAnswer
+                      ? styles.wrongAnswer
+                      : styles.correctAnswer
+                  }
                   onClick={(event) => {
-                    // hideQuestions(event);
-                    setHideQuestionCardState(true);
-                    setHideAnswerCardState(false);
-                    storeChosenAnswer(event);
-                    questionId.current = quizId;
+                    // event.target.style = { };
+
+                    setCorrectCol("green");
+
+                    setIncorrectCol("red");
                   }}
                 >
                   {answer}

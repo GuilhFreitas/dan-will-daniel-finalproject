@@ -57,7 +57,7 @@ export default function Main({ quizzes }) {
               quizId={quiz.id}
             />
 
-            <Answer
+            {/* <Answer
               correctAnswer={quiz.correctAnswer}
               storeChosenAnswer={storeChosenAnswer}
               setHideAnswerCardState={setHideAnswerCardState}
@@ -65,7 +65,7 @@ export default function Main({ quizzes }) {
               hideAnswerCard={hideAnswerCard}
               questionId={questionId}
               answerId={quiz.id}
-            />
+            /> */}
           </div>
         );
       })}
