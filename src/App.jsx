@@ -209,7 +209,7 @@ function App() {
     />
    
     { handleAboutClick ? (
-      setAboutClicked && <About getQuizzes={getQuizzes} quizzes={quizzes} setQuizzes={setQuizzes}/>
+      setAboutClicked && <About />
     ) : <Main getQuizzes={getQuizzes} quizzes={quizzes} setQuizzes={setQuizzes} />}
 
     <Footer />
