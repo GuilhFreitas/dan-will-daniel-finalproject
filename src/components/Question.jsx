@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Question({
   question,
@@ -27,10 +27,9 @@ export default function Question({
       margin: "2rem",
       ...style,
     },
-    container: {
-      display: "flex",
-      justifyContent: "center",
-    },
+    // container: {
+    //   justifyContent: "center",
+    // },
     category: { textAlign: "left" },
     question: {
       backgroundColor: "white",
@@ -49,14 +48,13 @@ export default function Question({
     },
   };
 
-  // const handleHideQuestions = (event) => {
+  // const handleHideQuestions = (event) => { 
   //   setHideQuestionCardState(true); // set state variable to true
   //   hideQuestions(event); // call parent function
   // };
 
   return (
     <div className="outer-div">
-      <div style={styles.container}>
         <div className="questionCard" style={styles.questionCard}>
           <div className="category" style={styles.category}>
             {category}
@@ -83,6 +81,5 @@ export default function Question({
           </div>
         </div>
       </div>
-    </div>
   );
 }

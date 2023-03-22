@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import Question from "./Question";
 import Answer from "./Answer";
 import { shuffle } from "lodash";
-import "./style/Main.css"
+import "./style/style.css"
 // import { positions } from "@mui/system";
 
 export default function Main({ quizzes }) {
@@ -36,7 +36,7 @@ export default function Main({ quizzes }) {
     <div className="main" >
       {quizzes.map((quiz, index) => {
         return (
-          <>
+          <div className="QuestionAnswer">
             <Question
               key={index}
               question={quiz.question}
@@ -60,7 +60,7 @@ export default function Main({ quizzes }) {
                 hideAnswerCard={hideAnswerCard}
               />
             )}
-          </>
+          </div>
         );
       })}
     </div>
