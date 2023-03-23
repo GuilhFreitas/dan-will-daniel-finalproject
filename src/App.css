@@ -1,4 +1,5 @@
 .App {
   text-align: center;
   background-color: aliceblue;
+  height: 500px auto;
 }

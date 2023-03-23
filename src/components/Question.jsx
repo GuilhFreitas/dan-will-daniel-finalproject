@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./style/style.css";
 import Save from "./Save";
 
 export default function Question({
@@ -27,10 +28,7 @@ export default function Question({
       margin: "2rem",
       ...style,
     },
-    container: {
-      display: "flex",
-      justifyContent: "center",
-    },
+    
     category: { textAlign: "left" },
     question: {
       backgroundColor: "white",

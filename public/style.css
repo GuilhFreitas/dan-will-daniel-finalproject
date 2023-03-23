@@ -2,18 +2,25 @@ body{
    background-color: rgb(220, 215, 215);
 }
 .container{
-  height: 1000px;
-  margin: auto 50px;
+  margin: auto;
   -webkit-box-shadow: -1px 3px 12px -1px #000000; 
   box-shadow: -1px 3px 12px -1px #000000;
   background-color: #fff;
 }
 
-@media (width:960px){
+.main{
+  display: flex;
+}
 
-    .container{
-        margin: auto 20px;
 
-      }
+@media (width:700px){
+
+.container{
+        margin: 2px;
+  }
+
+  .main{
+    display: block;
+  }
 
 }

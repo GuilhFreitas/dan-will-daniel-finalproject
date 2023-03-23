@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import Question from "./Question";
+import "./style/style.css";
+
 // import _ from "lodash";
 import { shuffle } from "lodash";
 
@@ -11,9 +13,9 @@ export default function Main({ quizzes }) {
     answerChosen.current = event.target.textContent;
   };
 
-  const styles = {
-    main: { backgroundColor: "#C0C4DF", height: "200rem" },
-  };
+  // const styles = {
+  //   main: { backgroundColor: "#C0C4DF", height: "200rem" },
+  // };
 
   const getPossibleAnswers = (quiz) => {
     if (!quiz.incorrectAnswers.includes(quiz.correctAnswer)) {
@@ -25,7 +27,7 @@ export default function Main({ quizzes }) {
   };
 
   return (
-    <div className="main" style={styles.main}>
+    <div className="main" >
       {quizzes.map((quiz, index) => {
         return (
           <div key={index}>

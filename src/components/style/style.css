@@ -1,11 +1,37 @@
+.main { 
+    background-color: #C0C4DF; 
+    }
+  body{
+      background-color: rgb(220, 215, 215);
+   }
+   .container{
+     margin: auto 50px;
+     -webkit-box-shadow: -1px 3px 12px -1px #000000; 
+     box-shadow: -1px 3px 12px -1px #000000;
+     background-color: #fff;
+   }
+
+   h1, h2, h3, h4, h5, h6{
+
+   }
+   
+   .main{
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+   }
+   
+.nav{
+
+}
 .App-header {
     background-color: #282c34;
-    background-image: url('../../public/synthwave-retro-2.jpg');
+    background-image: url('../../../public/synthwave-retro-2.jpg');
     background-size: 1020px 450px;
     align-items: center;
     justify-content: center;
     height: 300px;
-    margin: 0 ;
+    margin-top: 80px ;
     padding-top: 20px;
   }
   
@@ -45,7 +71,7 @@
                 inset 0 0 1.3rem #1336fe; 
     }
   
-  h2 {
+  .App-header h2 {
     position: relative;
     font-family: "Bungee Shade";
     font-size: 6.5rem;
@@ -53,7 +79,7 @@
     margin: -50px !important;
   }
 
-  h1 {
+  .App-header h1 {
     position: absolute;
     font-family: "Pacifico";
     font-size: 6rem;
@@ -66,7 +92,58 @@
   .pulsate {
      animation: pulsate 1s infinite alternate;     
   }
+
+  .footer{
+    background-color: #fff59d;
+    height: 150px;
+    margin: 0px 0px;
+    padding-top: 5px;
+    text-align: center;
+    align-content: center;
+  }
+
+ .footer p{
+    font-family: 'Bungee Shade', sans-serif;
+    font-weight: bold;
+    color: #c4c65a;
+    background-color: #1e1e3a;
+    color: transparent;
+    text-shadow: 1px 1px 2px rgba(253, 254, 186, 0.87);
+    -webkit-background-clip: text;
+       -moz-background-clip: text;
+            background-clip: text;
+    padding-top: 1px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 2px;
+  }
+
+  .script-font {
+    font-family: 'Pacifico';
+ }
+
+  .footer ul{
+   list-style-type: none;
+   display: flex;
+   justify-content: center;
+   margin: 15px ;
+  }
+
+
+ .footer li, a {
+ font-size: 20px;
+  color: #f09;
+  text-decoration: none;
+  margin: 0px 10px;
   
+}
+
+.footer a:hover{
+  transform:  scale(1.1);
+  transition: 500ms;
+  color: rgb(93, 188, 240);
+}
   
   @keyframes pulsate {
       
@@ -94,7 +171,7 @@
       0 0 92px #f09,
       0 0 102px #f09,
       0 0 151px #f09
-  }
+    }
   }
   
   @keyframes flicker {
@@ -110,7 +187,6 @@
         0 0 80px #f09,
         0 0 94px #f09,
         0 0 140px #f09;
-    
     }
     
     20%, 24%, 55% {        
@@ -118,13 +194,22 @@
     }    
   }
   
-  @media (width:1038px) {
+  @media (max-width:900px) {
     
     .App-header {
-      
       background-repeat: no-repeat;
       background-size: cover;
     }
-    
 
+   .main{ 
+     margin: 0 auto;
+     justify-content: center;
+   }
+
+   .container{
+    margin: 0px 20px
+   }
+ 
+   
   }
+
