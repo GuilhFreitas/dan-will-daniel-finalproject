@@ -10,7 +10,9 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 
+// initialize decks variable
 let decks = ["None"];
+
 // function sends POST request to AnkiConnect
 async function invoke(action, version, params = {}) {
     const response = await fetch('http://127.0.0.1:8765', {
@@ -25,28 +27,38 @@ async function invoke(action, version, params = {}) {
     
 };
 
-export default function SaveMenu({
+// the component function
+export default function Save({
     correctAnswer,
     question
 }) {
+    // state for MateriaUI menu
     const [anchorEl, setAnchorEl] = React.useState(null);
+
+    // AnkiConnect related state
     const [ankiState, setAnkiState] = React.useState({
         decks: decks,
         deck: "none",
     });
-    // React.useEffect(() => {
 
-    //   }, [ankiState.decks, ankiState.models]);
     const open = Boolean(anchorEl);
+
+    // opens Menu
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
+    // closes Menu
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    // changes the deck variable in state from the Select component
     const handleDeckChange = (event) => {
         setAnkiState({...ankiState, deck: event.target.value});
     };
+
+    // handles saving the question answer pair to a txt file
     const handleClickTxt = () => {
         const FileSaver = require('file-saver');
         const blob = new Blob([`${question};${correctAnswer}`], {type: "text/plain;charset=utf-8"});
@@ -57,8 +69,14 @@ export default function SaveMenu({
 
         saveCard();
     };
+
+    // handles initial AnkiConnect requests
     const handleClickAnki = async function () {
+
+        // permission to connect
         await invoke('requestPermission', 6);
+
+        // creates the model for trivia cards
         await invoke('createModel', 6, {
             "modelName" : "Quiz Time Trivia",
             "inOrderFields" : ["Front", "Back"],
@@ -67,10 +85,16 @@ export default function SaveMenu({
                 "Back": "{{FrontSide}}<hr id=answer>{{Back}}"
             }]
         })
+
+        // gets the user's decks and saves to variable
         decks = await invoke('deckNames', 6).then(data => data.result);
+
+        // sets the deck state to the first deck in the array; this re-renders the Select component
+        setAnkiState({...ankiState, deck: decks[0]});
 
     }
 
+    // handles exporting a note to Anki
     const handleAnkiExport = async function() {
         console.log("handleAnkiExport");
         await invoke('addNote', 6, {
@@ -98,9 +122,7 @@ export default function SaveMenu({
         });
     }
 
-    console.log(correctAnswer);
-    console.log(question);
-
+    // the component
     return (
         <div>
             <Button
