@@ -27,7 +27,6 @@ export default function HeaderNavbar({ getQuizzes,  category, limit, setAboutCli
 
 const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  
 const handleDrawerToggle = () => {
       setMobileOpen((prevState) => !prevState);
 };
@@ -35,8 +34,14 @@ const handleDrawerToggle = () => {
 // Function to render the About page
 const handleAboutClick = () => {
       setAboutClicked(true);
+      getQuizzes(false);
     };
 
+// Function to render the Main page
+const getQuizClick = () => {
+       getQuizzes(true);
+       setAboutClicked(false)    
+    };
   
   const drawer = (
       <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
@@ -62,7 +67,7 @@ const handleAboutClick = () => {
       primary: {
         main: "#fff59d",
       },
-    },
+    },  
   });
 
   const btn = createTheme({
@@ -84,7 +89,6 @@ const handleAboutClick = () => {
     },
   });
 
-
   //Render boxes with header and toolbar along with dropdowns
   return (
     <div className="HeaderNav">
@@ -94,8 +98,7 @@ const handleAboutClick = () => {
             <h1 className="neonText">Time</h1>
           </div>
         </header>
-      
-       
+            
      {/* This is a container for the app bar and drawer */}
      <Box sx={{ flexGrow: 1,  display: 'flex' }}>
        {/* Theme provider for the navigation theme */}
@@ -119,7 +122,7 @@ const handleAboutClick = () => {
              <ThemeProvider theme={btn}>
                <Button
                  // onClick={() => props.onQuizRequest(category, limit)}
-                 onClick={getQuizzes}
+                 onClick={getQuizClick}
                  variant="contained"
                >
                  Get Cards
@@ -182,7 +185,7 @@ const handleAboutClick = () => {
              {/* Navigation buttons */}
              <Box sx={{ display: { xs: 'none', sm: 'block',  flex: 5 }}}>
                {navItems.map((item) => (
-                 <Button key={item} sx={{ color: '#212121' }} onClick={handleAboutClick}>
+                 <Button key={item} sx={{ color: '#212121' }} onClick ={handleAboutClick}>
                    {item}
                  </Button>
                ))}
@@ -214,3 +217,4 @@ const handleAboutClick = () => {
   </div>
 )
 }
+
