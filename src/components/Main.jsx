@@ -74,6 +74,7 @@ export default function Main() {
             />
             {hideAnswerCard ? null : (
               <Answer
+                question={quiz.question}
                 key={index + 1000}
                 correctAnswer={quiz.correctAnswer}
                 // possibleAnswers={quiz.incorrectAnswers}

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Save from "./Save";
 import SaveMenu from "./SaveMenu";
 
 export default function Answer({
+  question,
   possibleAnswers,
   correctAnswer,
   hideAnswers,
@@ -55,7 +55,10 @@ export default function Answer({
         <div className="answerCard" style={styles.answerCard}>
           <p>{answerChosen}</p>
           <p>{correctAnswer}</p>
-          <SaveMenu/>
+          <SaveMenu 
+            correctAnswer={correctAnswer}
+            question={question}
+          />
         </div>
       </div>
     </div>

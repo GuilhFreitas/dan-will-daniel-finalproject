@@ -11,7 +11,6 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 
 let decks = ["None"];
-let models = ["None"];
 // function sends POST request to AnkiConnect
 async function invoke(action, version, params = {}) {
     const response = await fetch('http://127.0.0.1:8765', {
@@ -26,17 +25,18 @@ async function invoke(action, version, params = {}) {
     
 };
 
-export default function SaveMenu() {
+export default function SaveMenu({
+    correctAnswer,
+    question
+}) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [ankiState, setAnkiState] = React.useState({
         decks: decks,
-        models: models,
         deck: "none",
-        model: "none",
     });
-    React.useEffect(() => {
+    // React.useEffect(() => {
 
-      }, [ankiState.decks, ankiState.models]);
+    //   }, [ankiState.decks, ankiState.models]);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -47,19 +47,59 @@ export default function SaveMenu() {
     const handleDeckChange = (event) => {
         setAnkiState({...ankiState, deck: event.target.value});
     };
-    const handleModelChange = (event) => {
-        setAnkiState({...ankiState, model: event.target.value});
-    };
     const handleClickTxt = () => {
+        const FileSaver = require('file-saver');
+        const blob = new Blob([`${question};${correctAnswer}`], {type: "text/plain;charset=utf-8"});
+    
+        function saveCard(){
+            FileSaver.saveAs(blob, "cards.txt");
+        };
 
+        saveCard();
     };
     const handleClickAnki = async function () {
-        console.log("handleClickAnki fired");
         await invoke('requestPermission', 6);
+        await invoke('createModel', 6, {
+            "modelName" : "Quiz Time Trivia",
+            "inOrderFields" : ["Front", "Back"],
+            "cardTemplates" : [{
+                "Front": "{{Front}}",
+                "Back": "{{FrontSide}}<hr id=answer>{{Back}}"
+            }]
+        })
         decks = await invoke('deckNames', 6).then(data => data.result);
-         models = await invoke('modelNames', 6).then(data => data.result);
-         console.log(models);
+
     }
+
+    const handleAnkiExport = async function() {
+        console.log("handleAnkiExport");
+        await invoke('addNote', 6, {
+            "note" : {
+                "deckName" : ankiState.deck,
+                "modelName" : "Quiz Time Trivia",
+                "fields" : {
+                    "Front" : question,
+                    "Back" : correctAnswer
+                },
+                "options": {
+                    "allowDuplicate": false,
+                    "duplicateScope": "deck",
+                    "duplicateScopeOptions": {
+                        "deckName": ankiState.deck,
+                        "checkChildren": false,
+                        "checkAllModels": false
+                    }
+                },
+                "tags": [
+                    "quiz-time"
+                ]
+
+            }
+        });
+    }
+
+    console.log(correctAnswer);
+    console.log(question);
 
     return (
         <div>
@@ -99,7 +139,7 @@ export default function SaveMenu() {
                             Save to Anki
                         </AccordionSummary>
                         <AccordionDetails>
-                            <FormControl sx={{width:100}}>
+                            <FormControl sx={{width:150}}>
                                 <InputLabel id="deck-label">Deck</InputLabel>
                                 <Select
                                     labelId="deck-label"
@@ -113,20 +153,7 @@ export default function SaveMenu() {
                                     ))}
                                 </Select>
                             </FormControl>
-                            <FormControl sx={{width:100}}>
-                                <InputLabel id="model-label">Model</InputLabel>
-                                <Select
-                                    labelId="model-label"
-                                    id="model"
-                                    value={ankiState.model}
-                                    label="model"
-                                    onChange={handleModelChange}
-                                >
-                                    {models.map((model, i) => (
-                                        <MenuItem value={model} key={i}>{model}</MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
+                            <Button variant="outlined" onClick={handleAnkiExport}>Save</Button>
                         </AccordionDetails>
                     </Accordion>
                 </MenuItem>
