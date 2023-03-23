@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <HeaderNavbar getQuizzes={getQuizzes} limit={limit} category={category} />
+      <HeaderNavbar getQuizzes={getQuizzes} />
       <Main getQuizzes={getQuizzes} quizzes={quizzes} setQuizzes={setQuizzes} />
     </div>
   );

@@ -1,5 +1,5 @@
 //import statements for required components
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -14,11 +14,13 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "./HeaderNavbar.css";
 
 //function to create HeaderNavbar
-function HeaderNavbar({ getQuizzes, category, limit, props }) {
+function HeaderNavbar({ getQuizzes, props }) {
   // Function to handle DrawerToggle event
-  const handleDrawerToggle = () => {
-    props.onDrawerToggle();
-  };
+  // const handleDrawerToggle = () => {
+  //   props.onDrawerToggle();
+  // };
+  const categoryRef = useRef("");
+  const limitRef = useRef(5);
 
   //Creating themes using 'createTheme' function
   const nav = createTheme({
@@ -96,7 +98,7 @@ function HeaderNavbar({ getQuizzes, category, limit, props }) {
                       label="Category"
                       // onChange={handleCategoryChange}
                       onChange={(event) =>
-                        (category.current = event.target.value)
+                        (categoryRef.current = event.target.value)
                       }
                     >
                       <MenuItem value="Arts & Literature">
@@ -124,8 +126,10 @@ function HeaderNavbar({ getQuizzes, category, limit, props }) {
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       label="Cards"
-                      // onChange={handleNumCardsChange}
-                      onChange={(event) => (limit.current = event.target.value)}
+                      value={limitRef.current}
+                      onChange={(event) =>
+                        (limitRef.current = event.target.value)
+                      }
                     >
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="5">5</MenuItem>
