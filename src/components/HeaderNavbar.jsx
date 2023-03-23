@@ -1,5 +1,5 @@
 //import statements for required components
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -14,26 +14,13 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "./HeaderNavbar.css";
 
 //function to create HeaderNavbar
-function HeaderNavbar(props) {
-  //Defining constants for storing state variables- category and limit
-  const [category, setCategory] = useState("");
-  const [limit, setNumCards] = useState();
-
-  //Function to handle changes in category dropdown
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
-  };
-
-  //Function to handle changes for number of cards dropdown
-  const handleNumCardsChange = (event) => {
-    setNumCards(Number.parseInt(event.target.value));
-    props.onNumCardsChange(Number.parseInt(event.target.value));
-  };
-
-  //Function to handle DrawerToggle event
-  const handleDrawerToggle = () => {
-    props.onDrawerToggle();
-  };
+function HeaderNavbar({ getQuizzes }) {
+  // Function to handle DrawerToggle event
+  // const handleDrawerToggle = () => {
+  //   props.onDrawerToggle();
+  // };
+  const categoryRef = useRef("");
+  const limitRef = useRef(5);
 
   //Creating themes using 'createTheme' function
   const nav = createTheme({
@@ -81,7 +68,7 @@ function HeaderNavbar(props) {
                 color="inherit"
                 aria-label="open drawer"
                 edge="start"
-                onClick={handleDrawerToggle}
+                // onClick={handleDrawerToggle}
                 sx={{ mr: 2, display: { sm: "none" } }}
               >
                 <MenuIcon />
@@ -90,10 +77,11 @@ function HeaderNavbar(props) {
               {/* Creating button with variant using High Order Components */}
               <ThemeProvider theme={btn}>
                 <Button
-                  onClick={() => props.onQuizRequest(category, limit)}
+                  // onClick={() => props.onQuizRequest(category, limit)}
+                  onClick={getQuizzes}
                   variant="contained"
                 >
-                  Quiz
+                  Get Cards
                 </Button>
               </ThemeProvider>
 
@@ -107,9 +95,11 @@ function HeaderNavbar(props) {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={category}
                       label="Category"
-                      onChange={handleCategoryChange}
+                      // onChange={handleCategoryChange}
+                      onChange={(event) =>
+                        (categoryRef.current = event.target.value)
+                      }
                     >
                       <MenuItem value="Arts & Literature">
                         Arts &amp; Literature
@@ -135,9 +125,11 @@ function HeaderNavbar(props) {
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
-                      value={limit}
                       label="Cards"
-                      onChange={handleNumCardsChange}
+                      value={limitRef.current}
+                      onChange={(event) =>
+                        (limitRef.current = event.target.value)
+                      }
                     >
                       <MenuItem value="1">1</MenuItem>
                       <MenuItem value="5">5</MenuItem>
