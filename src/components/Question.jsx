@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Save from "./Save";
 
 export default function Question({
   question,
@@ -97,6 +98,10 @@ export default function Question({
               );
             })}
           </div>
+          <Save
+          question={question}
+          correctAnswer={correctAnswer}
+          />
         </div>
       </div>
     </div>
