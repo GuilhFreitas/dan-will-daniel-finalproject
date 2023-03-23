@@ -1,21 +1,17 @@
 import React from "react";
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Main from "./Main";
-
 export default function About(props){
     
     return(
 
         <Card sx={{ minWidth: 275 }}>
         <CardContent>
-          <Typography variant="h2" component="div">
+          <Typography variant="h2" component="div" align= 'center'>
             About
           </Typography>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" align= 'center' gutterBottom>
 
           Welcome to our About page!
 
@@ -35,9 +31,6 @@ export default function About(props){
             <br />
           </Typography>
           </CardContent>
-          <CardActions>
-          <Button onClick={<Main />} size="small">Quiz</Button>
-        </CardActions>
       </Card>
         
     );

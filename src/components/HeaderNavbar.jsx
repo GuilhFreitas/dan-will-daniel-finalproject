@@ -18,6 +18,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
+import "./style/style.css";
 
 const drawerWidth = 240;
 const navItems = [ 'About'];
@@ -183,7 +184,7 @@ const getQuizClick = () => {
              </ThemeProvider>
      
              {/* Navigation buttons */}
-             <Box sx={{ display: { xs: 'none', sm: 'block',  flex: 5 }}}>
+             <Box m={1} justifyContent={"flex-end"} alignItems={"flex-end"}>
                {navItems.map((item) => (
                  <Button key={item} sx={{ color: '#212121' }} onClick ={handleAboutClick}>
                    {item}
@@ -195,7 +196,7 @@ const getQuizClick = () => {
          </AppBar>
      
          {/* Drawer */}
-         <Box component="nav">
+         <Box className="nav">
            <Drawer
              variant="temporary"
              open={mobileOpen}

@@ -5,7 +5,7 @@
       background-color: rgb(220, 215, 215);
    }
    .container{
-     margin: auto;
+     margin: auto 50px;
      -webkit-box-shadow: -1px 3px 12px -1px #000000; 
      box-shadow: -1px 3px 12px -1px #000000;
      background-color: #fff;
@@ -21,7 +21,9 @@
      justify-content: center;
    }
    
-   
+.nav{
+
+}
 .App-header {
     background-color: #282c34;
     background-image: url('../../../public/synthwave-retro-2.jpg');
@@ -93,15 +95,55 @@
 
   .footer{
     background-color: #fff59d;
-    height: 100px;
-    padding-top: 30px ;
+    height: 150px;
+    margin: 0px 0px;
+    padding-top: 5px;
     text-align: center;
     align-content: center;
   }
 
+ .footer p{
+    font-family: 'Bungee Shade', sans-serif;
+    font-weight: bold;
+    color: #c4c65a;
+    background-color: #1e1e3a;
+    color: transparent;
+    text-shadow: 1px 1px 2px rgba(253, 254, 186, 0.87);
+    -webkit-background-clip: text;
+       -moz-background-clip: text;
+            background-clip: text;
+    padding-top: 1px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 2px;
+  }
+
+  .script-font {
+    font-family: 'Pacifico';
+ }
+
   .footer ul{
    list-style-type: none;
+   display: flex;
+   justify-content: center;
+   margin: 15px ;
   }
+
+
+ .footer li, a {
+ font-size: 20px;
+  color: #f09;
+  text-decoration: none;
+  margin: 0px 10px;
+  
+}
+
+.footer a:hover{
+  transform:  scale(1.1);
+  transition: 500ms;
+  color: rgb(93, 188, 240);
+}
   
   @keyframes pulsate {
       
@@ -161,8 +203,11 @@
 
    .main{ 
      margin: 0 auto;
-   
      justify-content: center;
+   }
+
+   .container{
+    margin: 0px 20px
    }
  
    
