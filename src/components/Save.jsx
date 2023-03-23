@@ -55,6 +55,8 @@ export default function Save({
 
     // changes the deck variable in state from the Select component
     const handleDeckChange = (event) => {
+
+        event.stopPropagation();
         setAnkiState({...ankiState, deck: event.target.value});
     };
 
@@ -69,7 +71,7 @@ export default function Save({
 
         saveCard();
     };
-
+    
     // handles initial AnkiConnect requests
     const handleClickAnki = async function () {
 
@@ -91,7 +93,7 @@ export default function Save({
 
         // sets the deck state to the first deck in the array; this re-renders the Select component
         setAnkiState({...ankiState, deck: decks[0]});
-
+        
     }
 
     // handles exporting a note to Anki
@@ -150,9 +152,12 @@ export default function Save({
             >
                 <MenuItem onClick={handleClickTxt}>Save as txt file</MenuItem>
                 <MenuItem onClick={handleClickAnki}>
-                    <Accordion sx={{
-                        width: 250
-                    }}>
+                    <Accordion 
+                        sx={{
+                            width: 250
+                            }}
+                        className={"anki"}
+                    >
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon />}
                             aria-controls="panel1a-content"
@@ -169,6 +174,7 @@ export default function Save({
                                     value={ankiState.deck}
                                     label="deck"
                                     onChange={handleDeckChange}
+                                    onClick={event => event.stopPropagation()}
                                 >
                                     {decks.map((deck, i) => (
                                         <MenuItem value={deck} key={i}>{deck}</MenuItem>
