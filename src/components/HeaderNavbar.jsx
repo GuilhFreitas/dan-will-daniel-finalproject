@@ -23,8 +23,9 @@ import "./style/style.css";
 const drawerWidth = 240;
 const navItems = [ 'About'];
 
+
 //function to create HeaderNavbar
-export default function HeaderNavbar({ getQuizzes,  category, limit, setAboutClicked }) {
+export default function HeaderNavbar({ getQuizzes, setAboutClicked, category, limit }) {
 
 const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -141,6 +142,7 @@ const getQuizClick = () => {
                      labelId="demo-simple-select-label"
                      id="demo-simple-select"
                      label="Category"
+                     value={category.current}
                      onChange={(event) =>
                        (category.current = event.target.value)
                      }
@@ -171,8 +173,10 @@ const getQuizClick = () => {
                      labelId="demo-simple-select-label"
                      id="demo-simple-select"
                      label="Cards"
-                     // onChange={handleNumCardsChange}
-                     onChange={(event) => (limit.current = event.target.value)}
+                     value={limit.current}
+                      onChange={(event) =>
+                        (limit.current = event.target.value)
+                      }
                    >
                      <MenuItem value="1">1</MenuItem>                      
                      <MenuItem value="5">5</MenuItem>
