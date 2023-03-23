@@ -65,6 +65,7 @@ function App() {
         ) : null}
         <Footer />
       </div>
+
     </div>
   );
 }

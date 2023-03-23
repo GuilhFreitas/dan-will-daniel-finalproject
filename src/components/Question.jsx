@@ -28,10 +28,7 @@ export default function Question({
       margin: "2rem",
       ...style,
     },
-    // // container: {
-    // //   display: "flex",
-    // //   justifyContent: "center",
-    // },
+    
     category: { textAlign: "left" },
     question: {
       backgroundColor: "white",

@@ -25,6 +25,7 @@ const navItems = [ 'About'];
 
 
 //function to create HeaderNavbar
+
 export default function HeaderNavbar({ getQuizzes, setAboutClicked, category, limit }) {
 
 const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -218,8 +219,8 @@ const getQuizClick = () => {
          </Box>
        </ThemeProvider>
      </Box>
-
   </div>
 )
+
 }
 

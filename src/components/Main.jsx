@@ -1,7 +1,7 @@
-
 import React, { useRef } from "react";
 import Question from "./Question";
 import "./style/style.css";
+
 // import _ from "lodash";
 import { shuffle } from "lodash";
 
