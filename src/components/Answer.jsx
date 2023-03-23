@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import SaveMenu from "./SaveMenu";
 
 export default function Answer({
-  possibleAnswers,
   correctAnswer,
-  hideAnswers,
   answerChosen,
   hideAnswerCard,
-  style,
+  questionId,
+  answerId,
+  setHideAnswerCardState,
 }) {
-  // const [hideAnswerCard, setHideAnswerCardState] = useState(false);
+  // const [hideAnswerCard, setHideAnswerCardState] = useState(true);
 
   const styles = {
     answerCard: {
@@ -47,15 +47,19 @@ export default function Answer({
     },
   };
 
-  console.log(answerChosen);
-  return (
+  // console.log(questionId.current);
+  // console.log(answerId);
+
+  // Render the component conditionally based on whether questionId is equal to answerId
+
+  return questionId.current === answerId ? (
     <div className="outer-div">
       <div style={styles.container}>
         <div className="answerCard" style={styles.answerCard}>
-          <p>{answerChosen}</p>
+          {answerChosen !== correctAnswer ? <p>{answerChosen}</p> : ""}
           <p>{correctAnswer}</p>
         </div>
       </div>
     </div>
-  );
+  ) : null;
 }
