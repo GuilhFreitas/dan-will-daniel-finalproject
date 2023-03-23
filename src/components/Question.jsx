@@ -8,9 +8,9 @@ export default function Question({
   correctAnswer,
 }) {
   const [backgroundCol, setBackgroundCol] = useState("#28C1C9");
-
   const [correctCol, setCorrectCol] = useState("#28C1C9");
   const [incorrectCol, setIncorrectCol] = useState("#28C1C9");
+
   const styles = {
     questionCard: {
       backgroundColor: "#E1F6FA",
@@ -87,6 +87,7 @@ export default function Question({
                       : styles.correctAnswer
                   }
                   onClick={(event) => {
+                    setBackgroundCol("#28C1C9");
                     setCorrectCol("#225C03");
                     setIncorrectCol("#DB2E2B");
                   }}

@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import "./App.css";
 import Main from "./components/Main";
 import HeaderNavbar from "./components/HeaderNavbar";
-import _ from "lodash";
 
 function App() {
   const [quizzes, setQuizzes] = useState([

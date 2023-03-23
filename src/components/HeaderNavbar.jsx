@@ -1,5 +1,5 @@
 //import statements for required components
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -14,7 +14,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import "./HeaderNavbar.css";
 
 //function to create HeaderNavbar
-function HeaderNavbar({ getQuizzes, props }) {
+function HeaderNavbar({ getQuizzes }) {
   // Function to handle DrawerToggle event
   // const handleDrawerToggle = () => {
   //   props.onDrawerToggle();

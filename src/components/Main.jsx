@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import Question from "./Question";
+import _ from "lodash";
 import { shuffle } from "lodash";
 
 export default function Main({ quizzes }) {
