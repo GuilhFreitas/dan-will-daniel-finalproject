@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Quiz Time
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Quiz Time React app is a fun and interactive way to test your knowledge on a variety of subjects. Whether you're looking to challenge yourself. Quiz Time app allows you to choose from a range of quizzes covering topics such as history, science, pop culture, and more. You can even create your own quiz and share it with friends!
 
-In the project directory, you can run:
+- Project: deplyed link: https://quiz-time-finalproject.netlify.app/
+- The project was created to practice and improve my skills using react.js, Nestlify and Material-ui framework.
+- As a result, I have learned how to create an react app, how to install npm modules , how implement React useState and Effects hooks methods.
 
-### `npm start`
+## Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation 
 
-### `npm test`
+Clone the GitHub repository into your directory and execute the command line in your git terminal in order to install and run the web app:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm start
+```
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[![badge](https://img.shields.io/badge/React-blue)][1]
+[![badge](https://img.shields.io/badge/Node.js-yellowgreen)][2]
+[![badge](https://img.shields.io/badge/npm-yellow)][3]
+[![badge](https://img.shields.io/badge/Ntml-orange)][4]
+[![badge](https://img.shields.io/badge/Css-blue)][5]
+[![badge](https://img.shields.io/badge/Material-Ui-brightgreen)][6]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[1]: https://reactjs.org/docs/getting-started.html
+[2]: https://nodejs.org/en/
+[3]: https://www.npmjs.com/
+[4]: https://www.w3schools.com/html
+[5]: https://www.w3schools.com/css
+[6]: https://mui.com/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Usage
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The project Home page view:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![quiz-time](https://user-images.githubusercontent.com/117309987/227396850-5704898f-accd-47a6-bc84-a03dce3c0c00.png)
+   
+## Walktrough demo
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+https://user-images.githubusercontent.com/117309987/227398550-e9d1a78e-95ab-4a1c-898a-e1f872967c08.mp4
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
 
-## Learn More
+![badge](https://img.shields.io/badge/license-MIT-brightgreen)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---

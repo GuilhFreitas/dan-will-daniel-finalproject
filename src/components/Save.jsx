@@ -9,6 +9,8 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import SaveAsIcon from '@mui/icons-material/SaveAs';
+import { cyan } from '@mui/material/colors';
 
 // initialize decks variable
 let decks = ["None"];
@@ -134,7 +136,8 @@ export default function Save({
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                💾
+                <SaveAsIcon sx={{ fontSize: 25, color: cyan[500]}}/>
+                
             </Button>
             <Menu 
                 PaperProps={{  

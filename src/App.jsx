@@ -8,7 +8,7 @@ import About from "./components/About";
 function App() {
   const [quizzes, setQuizzes] = useState([
     {
-      category: "♪ Music",
+      category: "Music",
       question: "Which musician released the album 'Off the Wall'?",
       correctAnswer: "Micheal Jackson",
       incorrectAnswers: ["Neil Young", "Eric the Clap", "jesus"],
@@ -16,8 +16,8 @@ function App() {
     },
   ]);
 
-  const category = useRef("");
-  const limit = useRef(5);
+  const category = useRef();
+  const limit = useRef();
 
   const [handleAboutClick, setAboutClicked] = useState(false);
   const [getQuizClick, setQuizzClicked] = useState(true);
