@@ -134,9 +134,9 @@ const getQuizClick = () => {
      
              {/* Category drop-down */}
              <ThemeProvider theme={dropDown}>
-               <Box sx={{ minWidth: 120, margin: 2 }}>
+               <Box sx={{ minWidth: 125, margin: 2 }}>
                  <FormControl fullWidth>
-                   <InputLabel id="demo-simple-select-label" label="Category">
+                   <InputLabel id="demo-simple-select-label">
                      Category
                    </InputLabel>
                    <Select
@@ -152,7 +152,7 @@ const getQuizClick = () => {
                        Arts &amp; Literature
                      </MenuItem>
                      <MenuItem value="Film & TV">Film &amp; TV</MenuItem>
-                     <MenuItem value="science">Science</MenuItem>
+                     <MenuItem value="Science">Science</MenuItem>
                      <MenuItem value="history">History</MenuItem>
                      <MenuItem value="Society & Culture">
                        Society &amp; Culture
@@ -189,7 +189,7 @@ const getQuizClick = () => {
              </ThemeProvider>
      
              {/* Navigation buttons */}
-             <Box m={1} justifyContent={"flex-end"} alignItems={"flex-end"}>
+             <Box m={1} sx={{ display: { xs: 'none', sm: 'block' } }}>
                {navItems.map((item) => (
                  <Button key={item} sx={{ color: '#212121' }} onClick ={handleAboutClick}>
                    {item}
